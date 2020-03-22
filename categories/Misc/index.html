@@ -22,7 +22,7 @@
     <meta name="description" content="">
     <meta property="og:type" content="website">
 <meta property="og:title" content="N0us&#39;s Blog">
-<meta property="og:url" content="http://yoursite.com/archives/index.html">
+<meta property="og:url" content="http://yoursite.com/categories/Misc/index.html">
 <meta property="og:site_name" content="N0us&#39;s Blog">
 <meta property="og:locale" content="en_US">
 <meta property="article:author" content="John Doe">
@@ -354,41 +354,6 @@
     
     
     <article class="index-post">
-        <a class="abstract-title" href = "/2020/03/22/Bugku/" >
-            
-                <span>Bugku Web 部分题解</span>
-        </a>
-        <div class="abstract-content">
-            Bugku Web 部分题解一、秋名山老司机题目地址：戳我
-打开网址发现是这样的，要求在2s内计算表达式，这类题很常见，思路就是抓取HTML，正则提取表达式，计算然后post回去数据就可以
-
-解题脚本如下：
-123456789101112import reimport requestsurl = 'http://123.206.87.240:8002/qiumingshan/'s=requests.Session()response = s.get(url)reg = re.compile(r'[0-9+\-*]&#123;3,&#125;[0-9]')result = reg.find...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/03/22</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "Writeup">Writeup</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "web">web</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
         <a class="abstract-title" href = "/2020/03/22/VsCode_Theme/" >
             
                 <span>从头开始设计自己的vscode主题插件</span>
@@ -410,39 +375,6 @@
             <div class= abstract-tags >
     
         <a class="post-tag" href="javascript:void(0);" data-tags = "vscode">vscode</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/03/22/CVE-2019-1338%E5%A4%8D%E7%8E%B0/" >
-            
-                <span>CVE-2019-1338复现</span>
-        </a>
-        <div class="abstract-content">
-            一、Description“An elevation of privilege vulnerability exists in the Windows Certificate Dialog when it does not properly enforce user privileges, aka ‘Windows Certificate Dialog Elevation of Privilege Vulnerability’. ”
-该漏洞存在于UAC（User Account Control，用户账户控制）机制中，利用它可以将Guest权限提升到System
-默认情况下，Windows...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/03/22</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "CVE">CVE</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "漏洞复现">漏洞复现</a>
     
 </div>
             

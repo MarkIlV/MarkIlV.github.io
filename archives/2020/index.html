@@ -354,12 +354,16 @@
     
     
     <article class="index-post">
-        <a class="abstract-title" href = "/2020/03/22/test/" >
+        <a class="abstract-title" href = "/2020/03/22/Bugku/" >
             
-                <span>test</span>
+                <span>Bugku Web 部分题解</span>
         </a>
         <div class="abstract-content">
-            
+            Bugku Web 部分题解一、秋名山老司机题目地址：戳我
+打开网址发现是这样的，要求在2s内计算表达式，这类题很常见，思路就是抓取HTML，正则提取表达式，计算然后post回去数据就可以
+
+解题脚本如下：
+123456789101112import reimport requestsurl = 'http://123.206.87.240:8002/qiumingshan/'s=requests.Session()response = s.get(url)reg = re.compile(r'[0-9+\-*]&#123;3,&#125;[0-9]')result = reg.find...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -367,6 +371,14 @@
                 <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/03/22</span>
             </div>
             <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "Writeup">Writeup</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "web">web</a>
+    
+</div>
             
         </div>
     </article>
@@ -377,18 +389,16 @@
     
     
     <article class="index-post">
-        <a class="abstract-title" href = "/2020/03/22/hello-world/" >
+        <a class="abstract-title" href = "/2020/03/22/VsCode_Theme/" >
             
-                <span>Hello World</span>
+                <span>从头开始设计自己的vscode主题插件</span>
         </a>
         <div class="abstract-content">
-            Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick StartCreate a new post1$ hexo new "My New Post"
+            0x00.缘起折腾是技术宅的美德，作为一个vscode的深度使用者以及一个挑剔的人，vscode扩展商店里的众多主题我都不是很喜欢，唯独有一款名为Darktooth theme的主题我一直很喜欢，它的配色正是我喜欢的风格，而转折发生在使用vscode书写markdown之后，我发现这款主题并不支持markdown的语法高亮，而在扩展商店搜寻许久也没找到看着特别喜欢的主题，遂决定自行开发一款自己的主题，于是就有了All-Gray的故事
 
-More info: Writing
-Run server1$ hexo server
-
-Mo...
+下载地址：VsCode扩展商店地址Github地址
+下面来具体说说怎么开发，我回先说怎么去开发插件，然后再说插件的发布
+0x01.主题插件的开发（1）安装...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -396,6 +406,45 @@ Mo...
                 <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/03/22</span>
             </div>
             <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "vscode">vscode</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href = "/2020/03/22/CVE-2019-1338%E5%A4%8D%E7%8E%B0/" >
+            
+                <span>CVE-2019-1338复现</span>
+        </a>
+        <div class="abstract-content">
+            一、Description“An elevation of privilege vulnerability exists in the Windows Certificate Dialog when it does not properly enforce user privileges, aka ‘Windows Certificate Dialog Elevation of Privilege Vulnerability’. ”
+该漏洞存在于UAC（User Account Control，用户账户控制）机制中，利用它可以将Guest权限提升到System
+默认情况下，Windows...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/03/22</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "CVE">CVE</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "漏洞复现">漏洞复现</a>
+    
+</div>
             
         </div>
     </article>
@@ -515,9 +564,20 @@ Mo...
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 2
+        Total : 3
         </div>
         <!-- search  -->
         
@@ -533,27 +593,33 @@ Mo...
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/22</span><a class="archive-post-title" href= "/2020/03/22/test/" >test</a>
+            <span class="archive-post-date">03/22</span><a class="archive-post-title" href= "/2020/03/22/Bugku/" >Bugku Web 部分题解</a>
         </li>
     
     
-    
-    
-    
-        </ul>
-    
-    <div class="archive-year"> Invalid date </div>
-    <ul class="year-list">
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/22</span><a class="archive-post-title" href= "/2020/03/22/VsCode_Theme/" >从头开始设计自己的vscode主题插件</a>
+        </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2020/03/22/hello-world/" >Hello World</a>
+            <span class="archive-post-date">03/22</span><a class="archive-post-title" href= "/2020/03/22/CVE-2019-1338%E5%A4%8D%E7%8E%B0/" >CVE-2019-1338复现</a>
         </li>
     
     </div>
   </div>
         <div class="sidebar-panel-tags">
     <div class="sidebar-tags-name">
+    
+        <span class="sidebar-tag-name" data-tags="Writeup"><span class="iconfont-archer">&#xe606;</span>Writeup</span>
+    
+        <span class="sidebar-tag-name" data-tags="web"><span class="iconfont-archer">&#xe606;</span>web</span>
+    
+        <span class="sidebar-tag-name" data-tags="CVE"><span class="iconfont-archer">&#xe606;</span>CVE</span>
+    
+        <span class="sidebar-tag-name" data-tags="漏洞复现"><span class="iconfont-archer">&#xe606;</span>漏洞复现</span>
+    
+        <span class="sidebar-tag-name" data-tags="vscode"><span class="iconfont-archer">&#xe606;</span>vscode</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
@@ -587,6 +653,12 @@ jsonContent:
 </div>
         <div class="sidebar-panel-categories">
     <div class="sidebar-categories-name">
+    
+        <span class="sidebar-category-name" data-categories="Writeup"><span class="iconfont-archer">&#xe60a;</span>Writeup</span>
+    
+        <span class="sidebar-category-name" data-categories="漏洞复现"><span class="iconfont-archer">&#xe60a;</span>漏洞复现</span>
+    
+        <span class="sidebar-category-name" data-categories="Misc"><span class="iconfont-archer">&#xe60a;</span>Misc</span>
     
     </div>
     <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
