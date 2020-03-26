@@ -36,7 +36,7 @@
 <meta property="og:image" content="http://picture.2er0blog.com/images/2020/03/24/image0dc2f4688312e8b2.png">
 <meta property="og:image" content="http://picture.2er0blog.com/images/2020/03/24/image6a3b671675b9706a.png">
 <meta property="article:published_time" content="2020-03-24T04:00:02.000Z">
-<meta property="article:modified_time" content="2020-03-24T15:09:31.877Z">
+<meta property="article:modified_time" content="2020-03-26T10:33:48.621Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="SSTI">
 <meta name="twitter:card" content="summary">
@@ -457,12 +457,9 @@ height:50vh;
 </li>
 <li><p>Python</p>
 <ul>
-<li><p>Jinja2</p>
-</li>
-<li><p>dijango</p>
-</li>
-<li><p>tornado</p>
-</li>
+<li>Jinja2</li>
+<li>dijango</li>
+<li>tornado</li>
 </ul>
 </li>
 </ul>
@@ -477,7 +474,7 @@ height:50vh;
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">custom_email=&#123;&#123;<span class="keyword">self</span>&#125;&#125;</span><br><span class="line">Object of <span class="class"><span class="keyword">class</span></span></span><br><span class="line"><span class="class"><span class="title">__TwigTemplate_7ae62e582f8a35e5ea6cc639800ecf15b96c0d6f78db3538221c1145580ca4a5</span> <span class="title">could</span> <span class="title">not</span> <span class="title">be</span></span></span><br><span class="line"><span class="class"><span class="title">converted</span> <span class="title">to</span> <span class="title">string</span></span></span><br></pre></td></tr></table></figure>
 
 <p>可以看到，这里用户通过传入非法的<code>custom_email</code>变量控制了模板本身的内容，从而实现了代码的执行，而这里的代码实际上是在沙箱中执行的，但根据所使用的模板引擎，可以结合沙箱逃逸技术而实现任意代码执行。</p>
-<h2 id="二、模板注入漏洞挖掘"><a href="#二、模板注入漏洞挖掘" class="headerlink" title="二、模板注入漏洞挖掘"></a>二、模板注入漏洞挖掘</h2><p>大体流程如下图</p>
+<h1 id="二、模板注入漏洞挖掘"><a href="#二、模板注入漏洞挖掘" class="headerlink" title="二、模板注入漏洞挖掘"></a>二、模板注入漏洞挖掘</h1><p>大体流程如下图</p>
 <p><img src="http://picture.2er0blog.com/images/2020/03/24/us-15-Kettle-Server-Side-Template-Injection-RCE-For-The-Modern-Web-App-wp.jpg" alt="us-15-Kettle-Server-Side-Template-Injection-RCE-For-The-Modern-Web-App-wp.jpg"></p>
 <h2 id="1-检测阶段"><a href="#1-检测阶段" class="headerlink" title="1.检测阶段"></a>1.检测阶段</h2><p>该漏洞可能出现在两种不同的环境中：</p>
 <ul>
@@ -704,7 +701,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#一、SSTI（Server-Side-Template-Injection）原理"><span class="toc-number">1.</span> <span class="toc-text">一、SSTI（Server-Side Template Injection）原理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#二、模板注入漏洞挖掘"><span class="toc-number">1.1.</span> <span class="toc-text">二、模板注入漏洞挖掘</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-检测阶段"><span class="toc-number">1.2.</span> <span class="toc-text">1.检测阶段</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-识别阶段"><span class="toc-number">1.3.</span> <span class="toc-text">2.识别阶段</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-利用阶段"><span class="toc-number">1.4.</span> <span class="toc-text">3.利用阶段</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#三、通过一道CTF题来实践"><span class="toc-number">2.</span> <span class="toc-text">三、通过一道CTF题来实践</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#附：检测模板注入的工具"><span class="toc-number">3.</span> <span class="toc-text">附：检测模板注入的工具</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#一、SSTI（Server-Side-Template-Injection）原理"><span class="toc-number">1.</span> <span class="toc-text">一、SSTI（Server-Side Template Injection）原理</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#二、模板注入漏洞挖掘"><span class="toc-number">2.</span> <span class="toc-text">二、模板注入漏洞挖掘</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-检测阶段"><span class="toc-number">2.1.</span> <span class="toc-text">1.检测阶段</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-识别阶段"><span class="toc-number">2.2.</span> <span class="toc-text">2.识别阶段</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-利用阶段"><span class="toc-number">2.3.</span> <span class="toc-text">3.利用阶段</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#三、通过一道CTF题来实践"><span class="toc-number">3.</span> <span class="toc-text">三、通过一道CTF题来实践</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#附：检测模板注入的工具"><span class="toc-number">4.</span> <span class="toc-text">附：检测模板注入的工具</span></a></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
