@@ -22,7 +22,7 @@
     <meta name="description" content="">
     <meta property="og:type" content="website">
 <meta property="og:title" content="N0us&#39;s Blog">
-<meta property="og:url" content="https://n0usec.top/categories/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/index.html">
+<meta property="og:url" content="https://n0usec.top/archives/2020/04/index.html">
 <meta property="og:site_name" content="N0us&#39;s Blog">
 <meta property="og:locale" content="en_US">
 <meta property="article:author" content="N0us">
@@ -365,27 +365,36 @@
     
     
     <article class="index-post">
-        <a class="abstract-title" href = "/2020/03/22/CVE-2019-1338%E5%A4%8D%E7%8E%B0/" >
+        <a class="abstract-title" href = "/2020/04/01/PHP%E4%B8%ADMD5%E5%87%BD%E6%95%B0%E6%BC%8F%E6%B4%9E%E6%80%BB%E7%BB%93/" >
             
-                <span>CVE-2019-1338 Windows 证书对话框提权</span>
+                <span>PHP中MD5函数漏洞总结</span>
         </a>
         <div class="abstract-content">
-            一、Description“An elevation of privilege vulnerability exists in the Windows Certificate Dialog when it does not properly enforce user privileges, aka ‘Windows Certificate Dialog Elevation of Privilege Vulnerability’. ”
-该漏洞存在于UAC（User Account Control，用户账户控制）机制中，利用它可以将Guest权限提升到System
-默认情况下，Windows...
+            PHP中MD5函数漏洞总结一、MD5算法首先还是说一下什么是MD5算法，MD5全名消息摘要算法（Message-Digest Algorithm 5），是一种密码散列函数，可以产生一个128位（16字节）的哈希值（hash value），用于确保信息传输的完整一致性，它的基础原理就是将数据预算变为另一固定长度的值
+1.Md5的特点
+长度一致性：任意长度的数据，计算出来的哈希值长度都是固定的128位
+
+不对称性：从原数据计算哈希值十分容易，但是知道哈希值去碰撞原数据十分困难
+
+
+2.MD5算法的基本原理一图胜千言，参考了大佬们的文章之后，我将MD5算法的基本流程总结成如下流程图：
+
+其中6...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
             <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/03/22</span>
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/04/01</span>
             </div>
             <!-- tags  -->
             
             <div class= abstract-tags >
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "CVE">CVE</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags = "MD5">MD5</a>
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "漏洞复现">漏洞复现</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags = "php">php</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "漏洞">漏洞</a>
     
 </div>
             
