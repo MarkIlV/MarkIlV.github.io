@@ -22,7 +22,7 @@
     <meta name="description" content="">
     <meta property="og:type" content="website">
 <meta property="og:title" content="N0us&#39;s Blog">
-<meta property="og:url" content="https://n0usec.top/tags/php/index.html">
+<meta property="og:url" content="https://n0usec.top/tags/%E9%A3%8E%E6%A0%BC%E8%BF%81%E7%A7%BB/index.html">
 <meta property="og:site_name" content="N0us&#39;s Blog">
 <meta property="og:locale" content="en_US">
 <meta property="article:author" content="N0us">
@@ -365,36 +365,28 @@
     
     
     <article class="index-post">
-        <a class="abstract-title" href = "/2020/04/01/PHP%E4%B8%ADMD5%E5%87%BD%E6%95%B0%E6%BC%8F%E6%B4%9E%E6%80%BB%E7%BB%93/" >
+        <a class="abstract-title" href = "/2020/04/06/%E7%94%A8Neural-Style%E7%94%9F%E6%88%90%E9%A3%8E%E6%A0%BC%E8%BF%81%E7%A7%BB%E5%9B%BE%E7%89%87/" >
             
-                <span>PHP中MD5函数漏洞总结</span>
+                <span>用Neural-Style生成风格迁移图片</span>
         </a>
         <div class="abstract-content">
-            PHP中MD5函数漏洞总结一、MD5算法首先还是说一下什么是MD5算法，MD5全名消息摘要算法（Message-Digest Algorithm 5），是一种密码散列函数，可以产生一个128位（16字节）的哈希值（hash value），用于确保信息传输的完整一致性，它的基础原理就是将数据预算变为另一固定长度的值
-1.Md5的特点
-长度一致性：任意长度的数据，计算出来的哈希值长度都是固定的128位
+            一、缘起这两天在设计一个网页，需要使用同一风格的图片来渲染氛围，当然作为一只懒狗是懒得动手一张一张画的，于是就想到了风格迁移，找了下GitHub，发现了Neural-Style这个项目，就决定是它了！
 
-不对称性：从原数据计算哈希值十分容易，但是知道哈希值去碰撞原数据十分困难
-
-
-2.MD5算法的基本原理一图胜千言，参考了大佬们的文章之后，我将MD5算法的基本流程总结成如下流程图：
-
-其中6...
+这张是官方的例子，更多请移步原项目
+二、安装该项目是基于Leon A. Gatys, Alexander S. Ecker, 和 Matthias Bethge撰写的论文《A Neural Algorithm of Artistic Style》论文，使用lua语言基于torch实现的，所以在安装之前首先要安装torch7和loadcaffe这两个必装的依赖，其他关于使用GPU进行计算的...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
             <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/04/01</span>
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/04/06</span>
             </div>
             <!-- tags  -->
             
             <div class= abstract-tags >
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "MD5">MD5</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags = "深度学习">深度学习</a>
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "php">php</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "漏洞">漏洞</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags = "风格迁移">风格迁移</a>
     
 </div>
             
