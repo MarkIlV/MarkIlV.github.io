@@ -2208,7 +2208,7 @@ html::-webkit-scrollbar-track:hover,
 }
 .abstract-content a,
 .article-entry a {
-  color: #f75357;
+  color: #000;
   padding: 0 0 0 2px;
   word-break: break-all;
 }
