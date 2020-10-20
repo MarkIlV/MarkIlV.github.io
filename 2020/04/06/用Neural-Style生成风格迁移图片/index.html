@@ -27,20 +27,20 @@
 <meta property="og:site_name" content="N0us&#39;s Blog">
 <meta property="og:description" content="一、缘起这两天在设计一个网页，需要使用同一风格的图片来渲染氛围，当然作为一只懒狗是懒得动手一张一张画的，于是就想到了风格迁移，找了下GitHub，发现了Neural-Style这个项目，就决定是它了！  这张是官方的例子，更多请移步原项目 二、安装该项目是基于Leon A. Gatys, Alexander S. Ecker, 和 Matthias Bethge撰写的论文《A Neural Alg">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://raw.githubusercontent.com/MarkIlV/PicStorage/main/Blog/20201015160536.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/MarkIlV/PicStorage/main/Blog/20201015160913.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/MarkIlV/PicStorage/main/Blog/20201015160914.jpg">
-<meta property="og:image" content="https://raw.githubusercontent.com/MarkIlV/PicStorage/main/Blog/20201015160735.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/MarkIlV/PicStorage/main/Blog/20201015160746.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/MarkIlV/PicStorage/main/Blog/20201015160800.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/MarkIlV/PicStorage/main/Blog/20201015160811.jpeg">
+<meta property="og:image" content="http://picture.2er0blog.com/images/2020/04/06/image-20200405165454713.png">
+<meta property="og:image" content="http://picture.2er0blog.com/images/2020/04/06/image.png">
+<meta property="og:image" content="http://picture.2er0blog.com/images/2020/04/06/ivan-torres-376149-unsplash.jpg">
+<meta property="og:image" content="http://picture.2er0blog.com/images/2020/04/06/out_100.png">
+<meta property="og:image" content="http://picture.2er0blog.com/images/2020/04/06/out_500.png">
+<meta property="og:image" content="http://picture.2er0blog.com/images/2020/04/06/out.png">
+<meta property="og:image" content="http://picture.2er0blog.com/images/2020/04/06/1.jpg">
 <meta property="article:published_time" content="2020-04-05T17:57:09.000Z">
-<meta property="article:modified_time" content="2020-10-15T08:10:25.587Z">
+<meta property="article:modified_time" content="2020-07-01T03:57:09.359Z">
 <meta property="article:author" content="N0us">
 <meta property="article:tag" content="深度学习">
 <meta property="article:tag" content="风格迁移">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/MarkIlV/PicStorage/main/Blog/20201015160536.png">
+<meta name="twitter:image" content="http://picture.2er0blog.com/images/2020/04/06/image-20200405165454713.png">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
     
@@ -307,7 +307,7 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>Word count: <span class="post-count word-count">1.8k</span>Reading time: <span class="post-count reading-time">6 min</span></span>
+                        <span>Word count: <span class="post-count word-count">1.9k</span>Reading time: <span class="post-count reading-time">7 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -437,9 +437,9 @@ height:50vh;
             <main class="main post-page">
     <article class="article-entry">
         <h1 id="一、缘起"><a href="#一、缘起" class="headerlink" title="一、缘起"></a>一、缘起</h1><p>这两天在设计一个网页，需要使用同一风格的图片来渲染氛围，当然作为一只懒狗是懒得动手一张一张画的，于是就想到了风格迁移，找了下GitHub，发现了<a href="https://github.com/jcjohnson/neural-style" target="_blank" rel="noopener">Neural-Style</a>这个项目，就决定是它了！</p>
-<p><img src="https://raw.githubusercontent.com/MarkIlV/PicStorage/main/Blog/20201015160536.png" alt=""></p>
+<p><img src="http://picture.2er0blog.com/images/2020/04/06/image-20200405165454713.png" alt="image-20200405165454713.png"></p>
 <p>这张是官方的例子，更多请移步原项目</p>
-<h1 id="二、安装"><a href="#二、安装" class="headerlink" title="二、安装"></a>二、安装</h1><p>该项目是基于Leon A. Gatys, Alexander S. Ecker, 和 Matthias Bethge撰写的论文《<a href="http://arxiv.org/abs/1508.06576" target="_blank" rel="noopener">A Neural Algorithm of Artistic Style</a>》论文，使用lua语言基于torch实现的，所以在安装之前首先要安装torch7和loadcaffe这两个必装的依赖，其他关于使用GPU进行计算的CUDA、cunn等等，由于我是在虚拟机里面跑的，只能使用CPU进行计算，就不再介绍了</p>
+<h1 id="二、安装"><a href="#二、安装" class="headerlink" title="二、安装"></a>二、安装</h1><p>该项目是基于Leon A. Gatys, Alexander S. Ecker, 和 Matthias Bethge撰写的论文《<a href="http://arxiv.org/abs/1508.06576" target="_blank" rel="noopener">A Neural Algorithm of Artistic Style</a>》，使用lua语言基于torch实现的，所以在安装之前首先要安装torch7和loadcaffe这两个必装的依赖，其他关于使用GPU进行计算的CUDA、cunn等等，由于我是在虚拟机里面跑的，只能使用CPU进行计算，就不再介绍了</p>
 <p>我使用的环境是Ubuntu19，虚拟机运行</p>
 <h2 id="1-安装torch7"><a href="#1-安装torch7" class="headerlink" title="1.安装torch7"></a>1.安装torch7</h2><p>torch7的GitHub项目主页：<a href="https://github.com/torch/torch7" target="_blank" rel="noopener">戳我</a></p>
 <p>torch7官网：<a href="http://torch.ch/" target="_blank" rel="noopener">戳我</a></p>
@@ -447,10 +447,10 @@ height:50vh;
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/torch/distro.git ~/torch --recursive</span><br></pre></td></tr></table></figure>
 
 <p>完成后从进入~/torch文件夹</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd ~/torch;</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd ~/torch</span><br></pre></td></tr></table></figure>
 
 <p>然后执行下面的命令安装依赖：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bash install-deps;</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bash install-deps</span><br></pre></td></tr></table></figure>
 
 <p>需要注意的是，这里需要将install-deps文件修改一下，不然会报错导致安装失败：</p>
 <p>装了vscode的话可以直接<code>code install-deps</code>将其打开，然后<code>Ctrl + H</code>打开替换，将该文件中所有的<code>python-software-properties</code>替换为<code>software-properties-common</code>，然后保存在执行上面的命令即可，这里没记错的话出去注释只需要修改两处即可</p>
@@ -483,22 +483,24 @@ height:50vh;
 
 <p>将近一个G的大小，又是一段漫长的等待</p>
 <p>下载完毕后，就可以开始使用它来生成自己的风格迁移图片了</p>
+<h2 id="PS"><a href="#PS" class="headerlink" title="PS."></a><strong>PS.</strong></h2><p>neural-style 的环境我已经打包成docker镜像放在docker hub了，不想自己手动配置环境的朋友可以直接pull下来用，链接在这里：<a href="https://hub.docker.com/r/markll/projects_images" target="_blank" rel="noopener">https://hub.docker.com/r/markll/projects_images</a></p>
+<p>或者可以直接命令pull下来：<code>docker pull markll/projects_images</code></p>
 <h1 id="三、使用"><a href="#三、使用" class="headerlink" title="三、使用"></a>三、使用</h1><p>先来介绍基本用法：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">th neural_style.lua -style_image &lt;image.jpg&gt; -content_image &lt;image.jpg&gt;</span><br></pre></td></tr></table></figure>
 
 <p>例如我使用example文件夹中皮尔特·克里斯蒂安·窦曼森的作品《The shipwreck》的去生成我一张壁纸的风格迁移图片：</p>
-<p><img src="https://raw.githubusercontent.com/MarkIlV/PicStorage/main/Blog/20201015160913.png" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/MarkIlV/PicStorage/main/Blog/20201015160914.jpg" alt=""></p>
+<p><a href="http://picture.2er0blog.com/image/hwYI" target="_blank" rel="noopener"><img src="http://picture.2er0blog.com/images/2020/04/06/image.png" alt="image.png"></a></p>
+<p><img src="http://picture.2er0blog.com/images/2020/04/06/ivan-torres-376149-unsplash.jpg" alt="ivan-torres-376149-unsplash.jpg"></p>
 <p>可以使用下面的命令来生成，<code>-gpu -1</code>标记的意思是不使用GPU而使用CPU来进行生成，因为我是在VMware里面跑的，没办法使用主机GPU，所以加上了这个标记</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">th neural_style.lua -style_image examples/inputs/shipwreck.jpg -content_image ~/Pictures/ivan-torres-376149-unsplash.jpg -gpu -1</span><br></pre></td></tr></table></figure>
 
 <p>运行后将会生成十张图片，效果从差到好，这里我只放上第一、五张和最后生成的第十张供参考：</p>
 <p>第一张：</p>
-<p><img src="https://raw.githubusercontent.com/MarkIlV/PicStorage/main/Blog/20201015160735.png" alt="out_100.png"></p>
+<p><img src="http://picture.2er0blog.com/images/2020/04/06/out_100.png" alt="out_100.png"></p>
 <p>第五张：</p>
-<p><img src="https://raw.githubusercontent.com/MarkIlV/PicStorage/main/Blog/20201015160746.png" alt="out_500.png"></p>
+<p><img src="http://picture.2er0blog.com/images/2020/04/06/out_500.png" alt="out_500.png"></p>
 <p>第十张：</p>
-<p><img src="https://raw.githubusercontent.com/MarkIlV/PicStorage/main/Blog/20201015160800.png" alt="out.png"></p>
+<p><img src="http://picture.2er0blog.com/images/2020/04/06/out.png" alt="out.png"></p>
 <p>基本使用就说到这里了，下面是一些高级选项：</p>
 <p><strong>选项</strong>：</p>
 <ul>
@@ -547,7 +549,7 @@ height:50vh;
 <li><a href="https://github.com/szagoruyko/loadcaffe/issues/48" target="_blank" rel="noopener">https://github.com/szagoruyko/loadcaffe/issues/48</a></li>
 </ul>
 </blockquote>
-<p><img src="https://raw.githubusercontent.com/MarkIlV/PicStorage/main/Blog/20201015160811.jpeg" alt="1.jpg"></p>
+<p><img src="http://picture.2er0blog.com/images/2020/04/06/1.jpg" alt="1.jpg"></p>
 
     </article>
     <!-- license  -->
@@ -557,8 +559,8 @@ height:50vh;
         <li class="next">
             
                 <div class="nextSlogan">Next Post</div>
-                <a href= "/2020/04/27/CTFHub%20Web%20RCE%20%E9%83%A8%E5%88%86%E9%A2%98%E8%A7%A3/" title= "CTFHub Web RCE 部分题解">
-                    <div class="nextTitle">CTFHub Web RCE 部分题解</div>
+                <a href= "/2020/04/06/%E7%94%A8Neural-Style%E7%8E%A9%E7%8E%A9%E5%9B%BE%E7%89%87%E9%A3%8E%E6%A0%BC%E8%BF%81%E7%A7%BB/" title= "用Neural-Style生成风格迁移图片">
+                    <div class="nextTitle">用Neural-Style生成风格迁移图片</div>
                 </a>
             
         </li>
@@ -697,7 +699,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#一、缘起"><span class="toc-number">1.</span> <span class="toc-text">一、缘起</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#二、安装"><span class="toc-number">2.</span> <span class="toc-text">二、安装</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-安装torch7"><span class="toc-number">2.1.</span> <span class="toc-text">1.安装torch7</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-安装loadcaffe"><span class="toc-number">2.2.</span> <span class="toc-text">2.安装loadcaffe</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-安装neural-style"><span class="toc-number">2.3.</span> <span class="toc-text">3.安装neural-style</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#三、使用"><span class="toc-number">3.</span> <span class="toc-text">三、使用</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#一、缘起"><span class="toc-number">1.</span> <span class="toc-text">一、缘起</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#二、安装"><span class="toc-number">2.</span> <span class="toc-text">二、安装</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-安装torch7"><span class="toc-number">2.1.</span> <span class="toc-text">1.安装torch7</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-安装loadcaffe"><span class="toc-number">2.2.</span> <span class="toc-text">2.安装loadcaffe</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-安装neural-style"><span class="toc-number">2.3.</span> <span class="toc-text">3.安装neural-style</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PS"><span class="toc-number">2.4.</span> <span class="toc-text">PS.</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#三、使用"><span class="toc-number">3.</span> <span class="toc-text">三、使用</span></a></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
@@ -788,9 +790,20 @@ top:50vh;
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 8
+        Total : 9
         </div>
         <!-- search  -->
         
@@ -811,6 +824,11 @@ top:50vh;
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">04/06</span><a class="archive-post-title" href= "/2020/04/06/%E7%94%A8Neural-Style%E7%8E%A9%E7%8E%A9%E5%9B%BE%E7%89%87%E9%A3%8E%E6%A0%BC%E8%BF%81%E7%A7%BB/" >用Neural-Style生成风格迁移图片</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">04/06</span><a class="archive-post-title" href= "/2020/04/06/%E7%94%A8Neural-Style%E7%94%9F%E6%88%90%E9%A3%8E%E6%A0%BC%E8%BF%81%E7%A7%BB%E5%9B%BE%E7%89%87/" >用Neural-Style生成风格迁移图片</a>
         </li>
     
@@ -826,12 +844,12 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/22</span><a class="archive-post-title" href= "/2020/03/22/Bugku/" >Bugku Web 部分题解</a>
+            <span class="archive-post-date">03/22</span><a class="archive-post-title" href= "/2020/03/22/VsCode_Theme/" >实现自己的vscode主题插件</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/22</span><a class="archive-post-title" href= "/2020/03/22/VsCode_Theme/" >实现自己的vscode主题插件</a>
+            <span class="archive-post-date">03/22</span><a class="archive-post-title" href= "/2020/03/22/Bugku/" >Bugku Web 部分题解</a>
         </li>
     
     
@@ -858,10 +876,6 @@ top:50vh;
         <div class="sidebar-panel-tags">
     <div class="sidebar-tags-name">
     
-        <span class="sidebar-tag-name" data-tags="Writeup"><span class="iconfont-archer">&#xe606;</span>Writeup</span>
-    
-        <span class="sidebar-tag-name" data-tags="web"><span class="iconfont-archer">&#xe606;</span>web</span>
-    
         <span class="sidebar-tag-name" data-tags="CVE"><span class="iconfont-archer">&#xe606;</span>CVE</span>
     
         <span class="sidebar-tag-name" data-tags="漏洞复现"><span class="iconfont-archer">&#xe606;</span>漏洞复现</span>
@@ -878,13 +892,17 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="vscode"><span class="iconfont-archer">&#xe606;</span>vscode</span>
     
+        <span class="sidebar-tag-name" data-tags="Writeup"><span class="iconfont-archer">&#xe606;</span>Writeup</span>
+    
+        <span class="sidebar-tag-name" data-tags="web"><span class="iconfont-archer">&#xe606;</span>web</span>
+    
+        <span class="sidebar-tag-name" data-tags="SQL Injection"><span class="iconfont-archer">&#xe606;</span>SQL Injection</span>
+    
         <span class="sidebar-tag-name" data-tags="SSTI"><span class="iconfont-archer">&#xe606;</span>SSTI</span>
     
         <span class="sidebar-tag-name" data-tags="深度学习"><span class="iconfont-archer">&#xe606;</span>深度学习</span>
     
         <span class="sidebar-tag-name" data-tags="风格迁移"><span class="iconfont-archer">&#xe606;</span>风格迁移</span>
-    
-        <span class="sidebar-tag-name" data-tags="SQL Injection"><span class="iconfont-archer">&#xe606;</span>SQL Injection</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
@@ -919,13 +937,13 @@ jsonContent:
         <div class="sidebar-panel-categories">
     <div class="sidebar-categories-name">
     
-        <span class="sidebar-category-name" data-categories="Writeup"><span class="iconfont-archer">&#xe60a;</span>Writeup</span>
-    
         <span class="sidebar-category-name" data-categories="漏洞复现"><span class="iconfont-archer">&#xe60a;</span>漏洞复现</span>
     
         <span class="sidebar-category-name" data-categories="web"><span class="iconfont-archer">&#xe60a;</span>web</span>
     
         <span class="sidebar-category-name" data-categories="Misc"><span class="iconfont-archer">&#xe60a;</span>Misc</span>
+    
+        <span class="sidebar-category-name" data-categories="Writeup"><span class="iconfont-archer">&#xe60a;</span>Writeup</span>
     
     </div>
     <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
