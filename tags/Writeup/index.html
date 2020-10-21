@@ -22,7 +22,7 @@
     <meta name="description" content="">
     <meta property="og:type" content="website">
 <meta property="og:title" content="N0us&#39;s Blog">
-<meta property="og:url" content="https://n0usec.top/tags/Writeup/index.html">
+<meta property="og:url" content="https://n0usec.top/tags/writeup/index.html">
 <meta property="og:site_name" content="N0us&#39;s Blog">
 <meta property="og:locale" content="en_US">
 <meta property="article:author" content="N0us">
@@ -365,29 +365,33 @@
     
     
     <article class="index-post">
-        <a class="abstract-title" href = "/2020/03/22/Bugku/" >
+        <a class="abstract-title" href = "/2020/10/22/Google%20Xss%20games/" >
             
-                <span>Bugku Web 部分题解</span>
+                <span>Xss-game Writeup</span>
         </a>
         <div class="abstract-content">
-            Bugku Web 部分题解一、秋名山老司机题目地址：戳我
-打开网址发现是这样的，要求在2s内计算表达式，这类题很常见，思路就是抓取HTML，正则提取表达式，计算然后post回去数据就可以
+            Xss-game WriteupXss game 是Google的一个面向初学者的XSS靶场，整体难度不高，适合刚开始练习xss的兄弟们学习
+地址：戳我
+Level 1
+任务描述说明level1级别测试的是xss最基础的漏洞原理，即用户输入直接包含在页面中而没有进行适当的过滤
 
-解题脚本如下：
-123456789101112import reimport requestsurl = 'http://123.206.87.240:8002/qiumingshan/'s=requests.Session()response = s.get(url)reg = re.compile(r'[0-9+\-*]&#123;3,&#125;[0-9]')result = reg.find...
+源码
+12345678910111213141516171819202122232425class MainPage(webapp.RequestHandler):   def render_string(self, s):    self.response.out.write(s)   def get(self...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
             <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/03/22</span>
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/10/22</span>
             </div>
             <!-- tags  -->
             
             <div class= abstract-tags >
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "Writeup">Writeup</a>
-    
         <a class="post-tag" href="javascript:void(0);" data-tags = "web">web</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "xss">xss</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "writeup">writeup</a>
     
 </div>
             
@@ -577,9 +581,22 @@
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 8
+        Total : 9
         </div>
         <!-- search  -->
         
@@ -592,6 +609,11 @@
     
     <div class="archive-year"> 2020 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/22</span><a class="archive-post-title" href= "/2020/10/22/Google%20Xss%20games/" >Xss-game Writeup</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -674,6 +696,10 @@
         <span class="sidebar-tag-name" data-tags="深度学习"><span class="iconfont-archer">&#xe606;</span>深度学习</span>
     
         <span class="sidebar-tag-name" data-tags="风格迁移"><span class="iconfont-archer">&#xe606;</span>风格迁移</span>
+    
+        <span class="sidebar-tag-name" data-tags="xss"><span class="iconfont-archer">&#xe606;</span>xss</span>
+    
+        <span class="sidebar-tag-name" data-tags="writeup"><span class="iconfont-archer">&#xe606;</span>writeup</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>

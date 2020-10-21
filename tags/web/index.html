@@ -365,6 +365,45 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href = "/2020/10/22/Google%20Xss%20games/" >
+            
+                <span>Xss-game Writeup</span>
+        </a>
+        <div class="abstract-content">
+            Xss-game WriteupXss game 是Google的一个面向初学者的XSS靶场，整体难度不高，适合刚开始练习xss的兄弟们学习
+地址：戳我
+Level 1
+任务描述说明level1级别测试的是xss最基础的漏洞原理，即用户输入直接包含在页面中而没有进行适当的过滤
+
+源码
+12345678910111213141516171819202122232425class MainPage(webapp.RequestHandler):   def render_string(self, s):    self.response.out.write(s)   def get(self...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/10/22</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "web">web</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "xss">xss</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "writeup">writeup</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href = "/2020/06/30/SQL%E6%B3%A8%E5%85%A5%E6%80%BB%E7%BB%93/" >
             
                 <span>SQL注入总结</span>
@@ -613,9 +652,22 @@ SQL注入产生的原因：服务器在接受应用的输入参数时，并未�
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 8
+        Total : 9
         </div>
         <!-- search  -->
         
@@ -628,6 +680,11 @@ SQL注入产生的原因：服务器在接受应用的输入参数时，并未�
     
     <div class="archive-year"> 2020 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/22</span><a class="archive-post-title" href= "/2020/10/22/Google%20Xss%20games/" >Xss-game Writeup</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -710,6 +767,10 @@ SQL注入产生的原因：服务器在接受应用的输入参数时，并未�
         <span class="sidebar-tag-name" data-tags="深度学习"><span class="iconfont-archer">&#xe606;</span>深度学习</span>
     
         <span class="sidebar-tag-name" data-tags="风格迁移"><span class="iconfont-archer">&#xe606;</span>风格迁移</span>
+    
+        <span class="sidebar-tag-name" data-tags="xss"><span class="iconfont-archer">&#xe606;</span>xss</span>
+    
+        <span class="sidebar-tag-name" data-tags="writeup"><span class="iconfont-archer">&#xe606;</span>writeup</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
