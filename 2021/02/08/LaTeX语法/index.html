@@ -20,34 +20,23 @@
     <meta name="keywords" content="N0us,2er0blog">
     
     <meta name="description" content="">
-    <meta name="description" content="一、Description“An elevation of privilege vulnerability exists in the Windows Certificate Dialog when it does not properly enforce user privileges, aka ‘Windows Certificate Dialog Elevation of Privilege">
+    <meta name="description" content="LaTeX语法记录一下LaTeX的语法，参考https:&#x2F;&#x2F;www.xmind.cn&#x2F;faq&#x2F;question&#x2F;equation&#x2F; 上标、下标及积分等    LaTeX 符号 说明    a^2 $$a^2$$ 上标   a_2 $$a_2$$ 下标   a^{2+2} $$a^{2+2}$$ 组合   x_2^3 $$x_2^3$$ 结合上下标   {}_1^2!X_3^4 $${}_1^2!X">
 <meta property="og:type" content="article">
-<meta property="og:title" content="CVE-2019-1338复现">
-<meta property="og:url" content="https://n0usec.top/2020/03/22/CVE-2019-1338%E5%A4%8D%E7%8E%B0/index.html">
+<meta property="og:title" content="Xss-game Writeup">
+<meta property="og:url" content="https://n0usec.top/2021/02/08/LaTeX%E8%AF%AD%E6%B3%95/index.html">
 <meta property="og:site_name" content="N0us&#39;s Blog">
-<meta property="og:description" content="一、Description“An elevation of privilege vulnerability exists in the Windows Certificate Dialog when it does not properly enforce user privileges, aka ‘Windows Certificate Dialog Elevation of Privilege">
+<meta property="og:description" content="LaTeX语法记录一下LaTeX的语法，参考https:&#x2F;&#x2F;www.xmind.cn&#x2F;faq&#x2F;question&#x2F;equation&#x2F; 上标、下标及积分等    LaTeX 符号 说明    a^2 $$a^2$$ 上标   a_2 $$a_2$$ 下标   a^{2+2} $$a^{2+2}$$ 组合   x_2^3 $$x_2^3$$ 结合上下标   {}_1^2!X_3^4 $${}_1^2!X">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://raw.githubusercontent.com/MarkIlV/PicStorage/main/Blog/20201015164751.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/MarkIlV/PicStorage/main/Blog/20201015164804.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/MarkIlV/PicStorage/main/Blog/20201015164812.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/MarkIlV/PicStorage/main/Blog/20201015164820.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/MarkIlV/PicStorage/main/Blog/20201015164901.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/MarkIlV/PicStorage/main/Blog/20201015164919.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/MarkIlV/PicStorage/main/Blog/20201015165052.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/MarkIlV/PicStorage/main/Blog/20201015165112.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/MarkIlV/PicStorage/main/Blog/20201015165148.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/MarkIlV/PicStorage/main/Blog/20201015165154.png">
-<meta property="article:published_time" content="2020-03-22T13:31:59.000Z">
-<meta property="article:modified_time" content="2020-10-15T08:52:05.510Z">
+<meta property="article:published_time" content="2021-02-08T11:17:16.000Z">
+<meta property="article:modified_time" content="2021-02-08T11:20:32.439Z">
 <meta property="article:author" content="N0us">
-<meta property="article:tag" content="CVE">
-<meta property="article:tag" content="漏洞复现">
+<meta property="article:tag" content="math">
+<meta property="article:tag" content="LaTeX">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/MarkIlV/PicStorage/main/Blog/20201015164751.png">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
     
-    <title>CVE-2019-1338复现 · N0us&#39;s Blog</title>
+    <title>Xss-game Writeup · N0us&#39;s Blog</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -253,7 +242,7 @@
                 <a href="/" >N0us&#39;s Blog</a>
             </div>
             <div class="post-title">
-                <a href="#" class="post-name">CVE-2019-1338复现</a>
+                <a href="#" class="post-name">Xss-game Writeup</a>
             </div>
     </div>
     
@@ -283,7 +272,7 @@ height:50vh;
         <h1 class="intro-title">
             <!-- 主页  -->
             
-            CVE-2019-1338复现
+            Xss-game Writeup
             <!-- 404 -->
             
         </h1>
@@ -302,20 +291,20 @@ height:50vh;
                 
                     <div class= post-intro-tags >
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "CVE">CVE</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags = "math">math</a>
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "漏洞复现">漏洞复现</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags = "LaTeX">LaTeX</a>
     
 </div>
                 
                 
                     <div class="post-intro-read">
-                        <span>Word count: <span class="post-count word-count">615</span>Reading time: <span class="post-count reading-time">2 min</span></span>
+                        <span>Word count: <span class="post-count word-count">1.6k</span>Reading time: <span class="post-count reading-time">9 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
                     <span class="post-intro-calander iconfont-archer">&#xe676;</span>
-                    <span class="post-intro-time">2020/03/22</span>
+                    <span class="post-intro-time">2021/02/08</span>
                     
                     <span id="busuanzi_container_page_pv" class="busuanzi-pv">
                         <span class="iconfont-archer">&#xe602;</span>
@@ -439,55 +428,1110 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <h1 id="一、Description"><a href="#一、Description" class="headerlink" title="一、Description"></a>一、Description</h1><p>“An elevation of privilege vulnerability exists in the Windows Certificate Dialog when it does not properly enforce user privileges, aka ‘Windows Certificate Dialog Elevation of Privilege Vulnerability’. ”</p>
-<p>该漏洞存在于UAC（User Account Control，用户账户控制）机制中，利用它可以将Guest权限提升到System</p>
-<p>默认情况下，Windows会在一个单独的桌面上显示所有UAC的提示，即Secure Desktop（安全桌面），这些提示由名为consent.exe的可执行文件产生，该文件以NT AUTHORITY\SYSTEM权限运行，完整性为System</p>
-<p>由于用户可以与此界面进行交互，故低权限用户可以通过UI操作的circuit回路径以System的身份进行操作</p>
-<h1 id="二、影响范围"><a href="#二、影响范围" class="headerlink" title="二、影响范围"></a>二、影响范围</h1><ul>
-<li><p>Microsoft Windows Server 2019</p>
-</li>
-<li><p>Microsoft Windows Server 2016</p>
-</li>
-<li><p>Microsoft Windows Server 2012</p>
-</li>
-<li><p>Microsoft Windows Server 2008 R2</p>
-</li>
-<li><p>Microsoft Windows Server 2008</p>
-</li>
-<li><p>Microsoft Windows RT 8.1</p>
-</li>
-<li><p>Microsoft Windows 8.1</p>
-</li>
-<li><p>Microsoft Windows 7</p>
-</li>
-</ul>
-<h1 id="三、复现"><a href="#三、复现" class="headerlink" title="三、复现"></a>三、复现</h1><p><strong>环境</strong>：Win7</p>
-<p>HHUPD下载：<a href="https://github.com/jas502n/CVE-2019-1388.git" target="_blank" rel="noopener">https://github.com/jas502n/CVE-2019-1388.git</a></p>
-<p>首先使用Guest用户进入系统</p>
-<p><img src="https://raw.githubusercontent.com/MarkIlV/PicStorage/main/Blog/20201015164751.png" alt="sdfsdfsa.png"></p>
-<p>打开cmd查看权限</p>
-<p><img src="https://raw.githubusercontent.com/MarkIlV/PicStorage/main/Blog/20201015164804.png" alt="sdgdfgds.png"></p>
-<p>打开用户账户控制程序，可以发现没有多余的可交互的按钮</p>
-<p><img src="https://raw.githubusercontent.com/MarkIlV/PicStorage/main/Blog/20201015164812.png" alt="12.png"></p>
-<p>点击“显示详细信息”，发现出现了一个“显示有关此发布者的证书的信息”</p>
-<p><img src="https://raw.githubusercontent.com/MarkIlV/PicStorage/main/Blog/20201015164820.png" alt="23.png"></p>
-<p>点进去看一下，发现是一个证书的详细信息，并且在“常规”选项的“颁发者”处存在一个超链接</p>
-<ul>
-<li>关于证书对话框处的超链接：证书对话框定义了一个Microsoft特定对象标识符（Object Identifier，OID），数值为 1.3.6.1.4.1.311.2.1.10 。WinTrust.h header将其定义为SPC_SP_AGENCY_INFO_OBJID，其如果存在，就会展示名为SpcSpAgencyInfo的详情tab页。该证书对话分析了该OID的值，如果它找到有效的格式正确的值，将使用它将“颁发者”字段的值呈现为超链接，而微软忘记禁用涉及证书对话的UAC版本的超链接</li>
-</ul>
-<p><img src="https://raw.githubusercontent.com/MarkIlV/PicStorage/main/Blog/20201015164901.png" alt=""></p>
-<p>点击此超链接，点击一次后，浏览器并没有弹出，此时应该点击确定，然后点击否，浏览器弹出</p>
-<p><img src="https://raw.githubusercontent.com/MarkIlV/PicStorage/main/Blog/20201015164919.png" alt="33.png"></p>
-<p>点击IE工具栏的“页面”选项，选择“另存为”，此时弹出这样的窗口</p>
-<p><img src="https://raw.githubusercontent.com/MarkIlV/PicStorage/main/Blog/20201015165052.png" alt=""></p>
-<p>点击确定，然后文件名栏输入“C:\Windows\System32*.*”</p>
-<p><img src="https://raw.githubusercontent.com/MarkIlV/PicStorage/main/Blog/20201015165112.png" alt="222.png"></p>
-<p>点击“保存”，进入目录</p>
-<p><img src="https://raw.githubusercontent.com/MarkIlV/PicStorage/main/Blog/20201015165148.png" alt="333.png"></p>
-<p>在C:\Windows\System32目录里面找到cmd，右键打开，检查权限</p>
-<p><img src="https://raw.githubusercontent.com/MarkIlV/PicStorage/main/Blog/20201015165154.png" alt="32.png"></p>
-<p>发现此时权限已经成功提升为System</p>
-<h1 id="四、声明"><a href="#四、声明" class="headerlink" title="四、声明"></a>四、声明</h1><p>本文中提到的漏洞利用Poc仅供交流学习，请读者遵守《网络安全法》等相关法律法规</p>
+        <h1 id="LaTeX语法"><a href="#LaTeX语法" class="headerlink" title="LaTeX语法"></a>LaTeX语法</h1><p>记录一下LaTeX的语法，参考<a href="https://www.xmind.cn/faq/question/equation/" target="_blank" rel="noopener">https://www.xmind.cn/faq/question/equation/</a></p>
+<p><strong>上标、下标及积分等</strong></p>
+<table>
+<thead>
+<tr>
+<th>LaTeX</th>
+<th>符号</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>a^2</td>
+<td>$$a^2$$</td>
+<td>上标</td>
+</tr>
+<tr>
+<td>a_2</td>
+<td>$$a_2$$</td>
+<td>下标</td>
+</tr>
+<tr>
+<td>a^{2+2}</td>
+<td>$$a^{2+2}$$</td>
+<td>组合</td>
+</tr>
+<tr>
+<td>x_2^3</td>
+<td>$$x_2^3$$</td>
+<td>结合上下标</td>
+</tr>
+<tr>
+<td>{}_1^2!X_3^4</td>
+<td>$${}_1^2!X_3^4$$</td>
+<td>前置上下标</td>
+</tr>
+<tr>
+<td>\bigcap_1^{n} p</td>
+<td>$$\bigcap_1^{n} p$$</td>
+<td>交集</td>
+</tr>
+<tr>
+<td>\bigcup_1^{k} p</td>
+<td>$$\bigcup_1^{k} p$$</td>
+<td>并集</td>
+</tr>
+<tr>
+<td>x’</td>
+<td>$$x’$$</td>
+<td>导数</td>
+</tr>
+<tr>
+<td>\dot{x}</td>
+<td>$$\dot{x}$$</td>
+<td>导数点</td>
+</tr>
+<tr>
+<td>\ddot{y}</td>
+<td>$$\ddot{y}$$</td>
+<td></td>
+</tr>
+<tr>
+<td>\vec{c}</td>
+<td>$$\vec{c}$$</td>
+<td>向量</td>
+</tr>
+<tr>
+<td>\overleftarrow{a b}</td>
+<td>$$\overleftarrow{a b}$$</td>
+<td></td>
+</tr>
+<tr>
+<td>\overrightarrow{c d}</td>
+<td>$$\overrightarrow{c d}$$</td>
+<td></td>
+</tr>
+<tr>
+<td>\widehat{e f g}</td>
+<td>$$\widehat{e f g}$$</td>
+<td></td>
+</tr>
+<tr>
+<td>\overset{\frown} {AB}</td>
+<td>$$\overset{\frown} {AB}$$</td>
+<td>上弧</td>
+</tr>
+<tr>
+<td>\overline{h i j}</td>
+<td>$$\overline{h i j}$$</td>
+<td>上划线</td>
+</tr>
+<tr>
+<td>\underline{k l m}</td>
+<td>$$\underline{k l m}$$</td>
+<td>下划线</td>
+</tr>
+<tr>
+<td>\overbrace{1+2+\cdots+100}</td>
+<td>$$\overbrace{1+2+\cdots+100}$$</td>
+<td>上括号</td>
+</tr>
+<tr>
+<td>\underbrace{a+b+\cdots+z}</td>
+<td>$$\underbrace{a+b+\cdots+z}$$</td>
+<td>下括号</td>
+</tr>
+<tr>
+<td>\sum_{k=1}^N k^2</td>
+<td>$$\sum_{k=1}^N k^2$$</td>
+<td>求和</td>
+</tr>
+<tr>
+<td>\prod_{i=1}^N x_i</td>
+<td>$$\prod_{i=1}^N x_i$$</td>
+<td>求积</td>
+</tr>
+<tr>
+<td>\coprod_{i=1}^N x_i</td>
+<td>$$\coprod_{i=1}^N x_i$$</td>
+<td>上积</td>
+</tr>
+<tr>
+<td>\lim_{n \to \infty}x_n</td>
+<td>$$\lim_{n \to \infty}x_n$$</td>
+<td>极限</td>
+</tr>
+<tr>
+<td>\int_{-N}^{N} e^x, dx</td>
+<td>$$\int_{-N}^{N} e^x, dx$$</td>
+<td>积分</td>
+</tr>
+<tr>
+<td>\iint_{D}^{W} , dx,dy</td>
+<td>$$\iint_{D}^{W} , dx,dy$$</td>
+<td>双重积分</td>
+</tr>
+<tr>
+<td>\iiint_{E}^{V} , dx,dy,dz</td>
+<td>$$\iiint_{E}^{V} , dx,dy,dz$$</td>
+<td>三重积分</td>
+</tr>
+<tr>
+<td>\oint_{C} x^3, dx + 4y^2, dy</td>
+<td>$$\oint_{C} x^3, dx + 4y^2, dy$$</td>
+<td>曲面积分</td>
+</tr>
+</tbody></table>
+<p><strong>根号</strong></p>
+<table>
+<thead>
+<tr>
+<th>LaTeX</th>
+<th>符号</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>\sqrt{3}</td>
+<td>$$\sqrt{3}$$</td>
+<td>平方根</td>
+</tr>
+<tr>
+<td>\sqrt[n]{3}</td>
+<td>$$\sqrt[n]{3}$$</td>
+<td>n 次方根</td>
+</tr>
+</tbody></table>
+<p><strong>关系符号</strong></p>
+<table>
+<thead>
+<tr>
+<th>LaTeX</th>
+<th>符号</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>\pm</td>
+<td>$$\pm$$</td>
+<td>加减</td>
+</tr>
+<tr>
+<td>\times</td>
+<td>$$\times$$</td>
+<td>乘</td>
+</tr>
+<tr>
+<td>\div</td>
+<td>$$\div$$</td>
+<td>除</td>
+</tr>
+<tr>
+<td>\neq</td>
+<td>$$\neq$$</td>
+<td>不等于</td>
+</tr>
+<tr>
+<td>\approx</td>
+<td>$$\approx$$</td>
+<td>约等于</td>
+</tr>
+<tr>
+<td>\equiv</td>
+<td>$$\equiv$$</td>
+<td>恒等于</td>
+</tr>
+<tr>
+<td>\not\equiv</td>
+<td>$$\not\equiv$$</td>
+<td>不恒等于</td>
+</tr>
+<tr>
+<td>\geq</td>
+<td>$$\geq$$</td>
+<td>大于等于</td>
+</tr>
+<tr>
+<td>\gg</td>
+<td>$$\gg$$</td>
+<td></td>
+</tr>
+<tr>
+<td>\leq</td>
+<td>$$\leq$$</td>
+<td>小于等于</td>
+</tr>
+<tr>
+<td>\ll</td>
+<td>$$\ll$$</td>
+<td></td>
+</tr>
+<tr>
+<td>\sim</td>
+<td>$$\sim$$</td>
+<td>相似</td>
+</tr>
+<tr>
+<td>\simeq</td>
+<td>$$\simeq$$</td>
+<td></td>
+</tr>
+<tr>
+<td>\cong</td>
+<td>$$\cong$$</td>
+<td></td>
+</tr>
+<tr>
+<td>\propto</td>
+<td>$$\propto$$</td>
+<td>正比于</td>
+</tr>
+<tr>
+<td>\perp</td>
+<td>$$\perp$$</td>
+<td>垂直</td>
+</tr>
+<tr>
+<td>\mbox{or}</td>
+<td>$$\mbox{or}$$</td>
+<td></td>
+</tr>
+</tbody></table>
+<p><strong>几何符号</strong></p>
+<table>
+<thead>
+<tr>
+<th>LaTeX</th>
+<th>符号</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>\Box</td>
+<td>$$\Box$$</td>
+<td>正方形</td>
+</tr>
+<tr>
+<td>\Diamond</td>
+<td>$$\Diamond$$</td>
+<td>菱形</td>
+</tr>
+<tr>
+<td>\triangle</td>
+<td>$$\triangle$$</td>
+<td>三角形</td>
+</tr>
+<tr>
+<td>\angle</td>
+<td>$$\angle$$</td>
+<td>角</td>
+</tr>
+<tr>
+<td>\perp</td>
+<td>$$\perp$$</td>
+<td>垂直</td>
+</tr>
+<tr>
+<td>\mid</td>
+<td>$$\mid$$</td>
+<td></td>
+</tr>
+<tr>
+<td>\nmid</td>
+<td>$$\nmid$$</td>
+<td></td>
+</tr>
+<tr>
+<td>|</td>
+<td>$$|$$</td>
+<td></td>
+</tr>
+<tr>
+<td>45^\circ</td>
+<td>$$45^\circ$$</td>
+<td>角度</td>
+</tr>
+</tbody></table>
+<p><strong>函数</strong></p>
+<table>
+<thead>
+<tr>
+<th>LaTeX</th>
+<th>符号</th>
+<th>LaTeX</th>
+<th>符号</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>\sin\theta</td>
+<td>$$\sin\theta$$</td>
+<td>\min L</td>
+<td>$$\min L$$</td>
+</tr>
+<tr>
+<td>\cos\theta</td>
+<td>$$\cos\theta$$</td>
+<td>\inf s</td>
+<td>$$\inf s$$</td>
+</tr>
+<tr>
+<td>\tan\theta</td>
+<td>$$\tan\theta$$</td>
+<td>\sup t</td>
+<td>$$\sup t$$</td>
+</tr>
+<tr>
+<td>\cot</td>
+<td>$$\cot$$</td>
+<td>\exp!t</td>
+<td>$$\exp!t$$</td>
+</tr>
+<tr>
+<td>\sec</td>
+<td>$$\sec$$</td>
+<td>\ln X</td>
+<td>$$\ln X$$</td>
+</tr>
+<tr>
+<td>\csc</td>
+<td>$$\csc$$</td>
+<td>\lg X</td>
+<td>$$\lg X$$</td>
+</tr>
+<tr>
+<td>\arcsin\frac{L}{r}</td>
+<td>$$\arcsin\frac{L}{r}$$</td>
+<td>\log X</td>
+<td>$$\log X$$</td>
+</tr>
+<tr>
+<td>\arccos\frac{T}{r}</td>
+<td>$$\arccos\frac{T}{r}$$</td>
+<td>f \ker g</td>
+<td>$$f \ker g$$</td>
+</tr>
+<tr>
+<td>\arctan\frac{L}{T}</td>
+<td>$$\arctan\frac{L}{T}$$</td>
+<td>\log_{10}</td>
+<td>$$\log_{10}$$</td>
+</tr>
+<tr>
+<td>\sinh g</td>
+<td>$$\sinh g$$</td>
+<td>\log_\alpha X</td>
+<td>$$\log_\alpha X$$</td>
+</tr>
+<tr>
+<td>\cosh h</td>
+<td>$$\cosh h$$</td>
+<td>\deg x</td>
+<td>$$\deg x$$</td>
+</tr>
+<tr>
+<td>\tanh i</td>
+<td>$$\tanh i$$</td>
+<td>\arg x</td>
+<td>$$\arg x$$</td>
+</tr>
+<tr>
+<td>\operatorname{sh}j</td>
+<td>$$\operatorname{sh}j$$</td>
+<td>\dim x</td>
+<td>$$\dim x$$</td>
+</tr>
+<tr>
+<td>\max H</td>
+<td>$$\max H$$</td>
+<td>\lim_{t\to n}T</td>
+<td>$$\lim_{t\to n}T$$</td>
+</tr>
+</tbody></table>
+<p><strong>集合</strong></p>
+<table>
+<thead>
+<tr>
+<th>LaTeX</th>
+<th>符号</th>
+<th>LaTeX</th>
+<th>符号</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>\forall</td>
+<td>$$\forall$$</td>
+<td>\exists</td>
+<td>$$\exists$$</td>
+</tr>
+<tr>
+<td>\in</td>
+<td>$$\in$$</td>
+<td>\ni</td>
+<td>$$\ni$$</td>
+</tr>
+<tr>
+<td>\subset</td>
+<td>$$\subset$$</td>
+<td>\subseteq</td>
+<td>$$\subseteq$$</td>
+</tr>
+<tr>
+<td>\supset</td>
+<td>$$\supset$$</td>
+<td>\supseteq</td>
+<td>$$\supseteq$$</td>
+</tr>
+<tr>
+<td>\sqsupset</td>
+<td>$$\sqsupset$$</td>
+<td>\sqsupseteq</td>
+<td>$$\sqsupseteq$$</td>
+</tr>
+<tr>
+<td>\cup</td>
+<td>$$\cup$$</td>
+<td>\bigcup</td>
+<td>$$\bigcup$$</td>
+</tr>
+<tr>
+<td>\sqcup</td>
+<td>$$\sqcup$$</td>
+<td>\bigsqcup</td>
+<td>$$\bigsqcup$$</td>
+</tr>
+<tr>
+<td>\cap</td>
+<td>$$\cap$$</td>
+<td>\bigcap</td>
+<td>$$\bigcap$$</td>
+</tr>
+<tr>
+<td>\sqsubset</td>
+<td>$$\sqsubset$$</td>
+<td>\sqsubseteq</td>
+<td>$$\sqsubseteq$$</td>
+</tr>
+<tr>
+<td>\varnothing</td>
+<td>$$\varnothing$$</td>
+<td>\biguplus</td>
+<td>$$\biguplus$$</td>
+</tr>
+<tr>
+<td>\emptyset</td>
+<td>$$\emptyset$$</td>
+<td>\sqcap</td>
+<td>$$\sqcap$$</td>
+</tr>
+<tr>
+<td>\notin</td>
+<td>$$\notin$$</td>
+<td>\setminus</td>
+<td>$$\setminus$$</td>
+</tr>
+</tbody></table>
+<p><strong>逻辑与箭头</strong></p>
+<table>
+<thead>
+<tr>
+<th>LaTeX</th>
+<th>符号</th>
+<th>LaTeX</th>
+<th>符号</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>\And</td>
+<td>$$\And$$</td>
+<td>\land</td>
+<td>$$\land$$</td>
+</tr>
+<tr>
+<td>\bar{q}</td>
+<td>$$\bar{q}$$</td>
+<td>\lor</td>
+<td>$$\lor$$</td>
+</tr>
+<tr>
+<td>\lnot</td>
+<td>$$\lnot$$</td>
+<td>\neg q</td>
+<td>$$\neg q$$</td>
+</tr>
+<tr>
+<td>\wedge</td>
+<td>$$\wedge$$</td>
+<td>\bigwedge</td>
+<td>$$\bigwedge$$</td>
+</tr>
+<tr>
+<td>\vee</td>
+<td>$$\vee$$</td>
+<td>\bigvee</td>
+<td>$$\bigvee$$</td>
+</tr>
+<tr>
+<td>\setminus</td>
+<td>$$\setminus$$</td>
+<td>\smallsetminus</td>
+<td>$$\smallsetminus$$</td>
+</tr>
+<tr>
+<td>\leftarrow</td>
+<td>$$\leftarrow$$</td>
+<td>\gets</td>
+<td>$$\gets$$</td>
+</tr>
+<tr>
+<td>\to</td>
+<td>$$\to$$</td>
+<td>\rightarrow</td>
+<td>$$\rightarrow$$</td>
+</tr>
+<tr>
+<td>\leftrightarrow</td>
+<td>$$\leftrightarrow$$</td>
+<td>\longleftarrow</td>
+<td>$$\longleftarrow$$</td>
+</tr>
+<tr>
+<td>\longrightarrow</td>
+<td>$$\longrightarrow$$</td>
+<td>\mapsto</td>
+<td>$$\mapsto$$</td>
+</tr>
+<tr>
+<td>\longmapsto</td>
+<td>$$\longmapsto$$</td>
+<td>\hookrightarrow</td>
+<td>$$\hookrightarrow$$</td>
+</tr>
+<tr>
+<td>\hookleftarrow</td>
+<td>$$\hookleftarrow$$</td>
+<td>\nearrow</td>
+<td>$$\nearrow$$</td>
+</tr>
+<tr>
+<td>\searrow</td>
+<td>$$\searrow$$</td>
+<td>\swarrow</td>
+<td>$$\swarrow$$</td>
+</tr>
+<tr>
+<td>\nwarrow</td>
+<td>$$\nwarrow$$</td>
+<td>\uparrow</td>
+<td>$$\uparrow$$</td>
+</tr>
+<tr>
+<td>\downarrow</td>
+<td>$$\downarrow$$</td>
+<td>\updownarrow</td>
+<td>$$\updownarrow$$</td>
+</tr>
+<tr>
+<td>\Leftarrow</td>
+<td>$$\Leftarrow$$</td>
+<td>\Rightarrow</td>
+<td>$$\Rightarrow$$</td>
+</tr>
+<tr>
+<td>\Leftrightarrow</td>
+<td>$$\Leftrightarrow$$</td>
+<td>\Longleftarrow</td>
+<td>$$\Longleftarrow$$</td>
+</tr>
+<tr>
+<td>\Longrightarrow</td>
+<td>$$\Longrightarrow$$</td>
+<td>\Longleftrightarrow</td>
+<td>$$\Longleftrightarrow$$</td>
+</tr>
+</tbody></table>
+<p><strong>括号</strong></p>
+<table>
+<thead>
+<tr>
+<th>LaTeX</th>
+<th>符号</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>\left ( \frac{a}{b} \right )</td>
+<td>$$\left ( \frac{a}{b} \right )$$</td>
+<td>小括号</td>
+</tr>
+<tr>
+<td>\left[ \frac{a}{b} \right]</td>
+<td>$$\left[ \frac{a}{b} \right]$$</td>
+<td>中括号</td>
+</tr>
+<tr>
+<td>\left \langle \frac{a}{b} \right \rangle</td>
+<td>$$\left \langle \frac{a}{b} \right \rangle$$</td>
+<td>尖括号</td>
+</tr>
+<tr>
+<td>\left{ \frac{a}{b} \right}</td>
+<td>$$\left{ \frac{a}{b} \right}$$</td>
+<td>大括号</td>
+</tr>
+<tr>
+<td>\overbrace{ 1+2+\cdots+100 }</td>
+<td>$$\overbrace{ 1+2+\cdots+100 }$$</td>
+<td>上括号</td>
+</tr>
+<tr>
+<td>\underbrace{ a+b+\cdots+z }</td>
+<td>$$\underbrace{ a+b+\cdots+z }$$</td>
+<td>下括号</td>
+</tr>
+</tbody></table>
+<p><strong>分数、矩阵、多行列式</strong></p>
+<table>
+<thead>
+<tr>
+<th>LaTeX</th>
+<th>符号</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>\frac{1}{2}=0.5</td>
+<td>$$\frac{1}{2}=0.5$$</td>
+<td>分数</td>
+</tr>
+<tr>
+<td>\tfrac{1}{2} = 0.5</td>
+<td>$$\tfrac{1}{2} = 0.5$$</td>
+<td>小型分数</td>
+</tr>
+<tr>
+<td>\dfrac{k}{k-1} = 0.5</td>
+<td>$$\dfrac{k}{k-1} = 0.5$$</td>
+<td>大型分数</td>
+</tr>
+<tr>
+<td>\dfrac{ \tfrac{1}{2}[1-(\tfrac{1}{2})^n] }{ 1-\tfrac{1}{2} } = s_n</td>
+<td>$$\dfrac{ \tfrac{1}{2}[1-(\tfrac{1}{2})^n] }{ 1-\tfrac{1}{2} } = s_n$$</td>
+<td>大小型分数嵌套</td>
+</tr>
+<tr>
+<td>\cfrac{2}{ c + \cfrac{2}{ d + \cfrac{1}{2} } } = a</td>
+<td>$$\cfrac{2}{ c + \cfrac{2}{ d + \cfrac{1}{2} } } = a$$</td>
+<td>连续分数</td>
+</tr>
+<tr>
+<td>\binom{n}{k}</td>
+<td>$$\binom{n}{k}$$</td>
+<td>二项式分数</td>
+</tr>
+<tr>
+<td>\tbinom{n}{k}</td>
+<td>$$\tbinom{n}{k}$$</td>
+<td>小型二项式系数</td>
+</tr>
+<tr>
+<td>\dbinom{n}{k}</td>
+<td>$$\dbinom{n}{k}$$</td>
+<td>大型二项式系数</td>
+</tr>
+<tr>
+<td>\begin{matrix} <br/>x &amp; y \ <br/> z &amp; v <br/> \end{matrix}</td>
+<td>$$\begin{matrix}                           x &amp; y \                             z &amp; v                             \end{matrix}$$</td>
+<td>矩阵</td>
+</tr>
+<tr>
+<td>\begin{vmatrix} <br/>x &amp; y \ <br/> z &amp; v <br/> \end{vmatrix}</td>
+<td>$$\begin{vmatrix}                           x &amp; y \                           z &amp; v                      \end{vmatrix}$$</td>
+<td></td>
+</tr>
+<tr>
+<td>\begin{Vmatrix} <br/>x &amp; y \ \ <br/> z &amp; v <br/> \end{Vmatrix}</td>
+<td>$$\begin{Vmatrix}                             x &amp; y \                          z &amp; v                        \end{Vmatrix}$$</td>
+<td></td>
+</tr>
+<tr>
+<td>\begin{bmatrix} <br/>0 &amp; \cdots &amp; 0 \ \ <br/>vdots &amp; \ddots &amp; \vdots \ 0 &amp; \cdots &amp; 0<br/> \end{bmatrix}</td>
+<td>$$\begin{bmatrix}                              0 &amp; \cdots &amp; 0 \                             \vdots &amp; \ddots &amp; \vdots \  0 &amp; \cdots &amp; 0                             \end{bmatrix}$$</td>
+<td></td>
+</tr>
+<tr>
+<td>\begin{Bmatrix}<br/> x &amp; y \ \ <br/>z &amp; v<br/> \end{Bmatrix}</td>
+<td>$$\begin{Bmatrix}                              x &amp; y \                              z &amp; v                            \end{Bmatrix}$$</td>
+<td></td>
+</tr>
+<tr>
+<td>\begin{pmatrix} <br/>x &amp; y \\ <br/> z &amp; v<br/> \end{pmatrix}</td>
+<td>$$\begin{pmatrix}                             x &amp; y \                              z &amp; v                             \end{pmatrix}$$</td>
+<td></td>
+</tr>
+<tr>
+<td>\bigl( \begin{smallmatrix} <br/>a&amp;b\\ <br/> c&amp;d <br/>\end{smallmatrix} \bigr)</td>
+<td>$$\bigl( \begin{smallmatrix}                            a&amp;b\                             c&amp;d                              \end{smallmatrix} \bigr)$$</td>
+<td></td>
+</tr>
+<tr>
+<td>\begin{array}{|c|c||c|}  <br/>a &amp; b &amp; S \ \ <br/>\hline <br/> 0&amp;0&amp;1\\ <br/> 0&amp;1&amp;1\\ <br/> 1&amp;0&amp;1\\ <br/> 1&amp;1&amp;0 <br/>\end{array}</td>
+<td>$$\begin{array}{</td>
+<td>c</td>
+</tr>
+<tr>
+<td>f(n) = <br/>\begin{cases} <br/>n/2,  &amp; \mbox{if }n\mbox{ is even} \<br/>3n+1, &amp; \mbox{if }n\mbox{ is odd} <br/>\end{cases}</td>
+<td>$$f(n) =                               \begin{cases}                               n/2,  &amp; \mbox{if }n\mbox{ is even} \                              3n+1, &amp; \mbox{if }n\mbox{ is odd}                               \end{cases}$$</td>
+<td>条件定义</td>
+</tr>
+<tr>
+<td>\begin{cases} <br/>3x + 5y +  z &amp;= 1 \ <br/>7x - 2y + 4z &amp;= 2 \ <br/>-6x + 3y + 2z &amp;= 3 <br/>\end{cases}</td>
+<td>$$\begin{cases}                            3x + 5y +  z &amp;= 1 \                              7x - 2y + 4z &amp;= 2 \                             -6x + 3y + 2z &amp;= 3                         \end{cases}$$</td>
+<td>方程组</td>
+</tr>
+<tr>
+<td>\begin{align} <br/>f(x) &amp; = (a+b)^2 \ <br/>&amp; = a^2+2ab+b^2 <br/>\end{align}</td>
+<td>$$\begin{align}                          f(x) &amp; = (a+b)^2 \                              &amp; = a^2+2ab+b^2                           \end{align}$$</td>
+<td>多行公式</td>
+</tr>
+<tr>
+<td>\begin{alignat}{2} <br/>f(x) &amp; = (a-b)^2 \ <br/>&amp; = a^2-2ab+b^2 <br/> \end{alignat}</td>
+<td>$$\begin{alignat}{2}                             f(x) &amp; = (a-b)^2 \                             &amp; = a^2-2ab+b^2                             \end{alignat}$$</td>
+<td></td>
+</tr>
+<tr>
+<td>\begin{array}{lcl} <br/>z &amp; = &amp; a \ <br/>f(x,y,z) &amp; = &amp; x + y + z <br/>\end{array}</td>
+<td>$$\begin{array}{lcl}                             z &amp; = &amp; a \                            f(x,y,z) &amp; = &amp; x + y + z                             \end{array}$$</td>
+<td>多行公式（左对齐）</td>
+</tr>
+<tr>
+<td>\begin{array}{lcr} <br/>z &amp; = &amp; a \ <br/>f(x,y,z) &amp; = &amp; x + y + z <br/>\end{array}</td>
+<td>$$\begin{array}{lcr}                             z &amp; = &amp; a \                            f(x,y,z) &amp; = &amp; x + y + z                             \end{array}$$</td>
+<td>多行公式（右对齐）</td>
+</tr>
+<tr>
+<td><strong>希腊字母</strong></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>LaTeX</th>
+<th>符号</th>
+<th>LaTeX</th>
+<th>符号</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>\Gamma</td>
+<td>$$\Gamma$$</td>
+<td>\Delta</td>
+<td>$$\Delta$$</td>
+</tr>
+<tr>
+<td>\Theta</td>
+<td>$$\Theta$$</td>
+<td>\Lambda</td>
+<td>$$\Lambda$$</td>
+</tr>
+<tr>
+<td>\Xi</td>
+<td>$$\Xi$$</td>
+<td>\Pi</td>
+<td>$$\Pi$$</td>
+</tr>
+<tr>
+<td>\Sigma</td>
+<td>$$\Sigma$$</td>
+<td>\Upsilon</td>
+<td>$$\Upsilon$$</td>
+</tr>
+<tr>
+<td>\Phi</td>
+<td>$$\Phi$$</td>
+<td>\Psi</td>
+<td>$$\Psi$$</td>
+</tr>
+<tr>
+<td>\Omega</td>
+<td>$$\Omega$$</td>
+<td></td>
+<td>$$$$</td>
+</tr>
+<tr>
+<td>\alpha</td>
+<td>$$\alpha$$</td>
+<td>\beta</td>
+<td>$$\beta$$</td>
+</tr>
+<tr>
+<td>\gamma</td>
+<td>$$\gamma$$</td>
+<td>\delta</td>
+<td>$$\delta$$</td>
+</tr>
+<tr>
+<td>\epsilon</td>
+<td>$$\epsilon$$</td>
+<td>\zeta</td>
+<td>$$\zeta$$</td>
+</tr>
+<tr>
+<td>\eta</td>
+<td>$$\eta$$</td>
+<td>\theta</td>
+<td>$$\theta$$</td>
+</tr>
+<tr>
+<td>\iota</td>
+<td>$$\iota$$</td>
+<td>\kappa</td>
+<td>$$\kappa$$</td>
+</tr>
+<tr>
+<td>\lambda</td>
+<td>$$\lambda$$</td>
+<td>\mu</td>
+<td>$$\mu$$</td>
+</tr>
+<tr>
+<td>\nu</td>
+<td>$$\nu$$</td>
+<td>\xi</td>
+<td>$$\xi$$</td>
+</tr>
+<tr>
+<td>\omicron</td>
+<td>$$\omicron$$</td>
+<td>\pi</td>
+<td>$$\pi$$</td>
+</tr>
+<tr>
+<td>\rho</td>
+<td>$$\rho$$</td>
+<td>\sigma</td>
+<td>$$\sigma$$</td>
+</tr>
+<tr>
+<td>\tau</td>
+<td>$$\tau$$</td>
+<td></td>
+<td>$$$$</td>
+</tr>
+<tr>
+<td>\upsilon</td>
+<td>$$\upsilon$$</td>
+<td>\phi</td>
+<td>$$\phi$$</td>
+</tr>
+<tr>
+<td>\chi</td>
+<td>$$\chi$$</td>
+<td>\psi</td>
+<td>$$\psi$$</td>
+</tr>
+<tr>
+<td>\omega</td>
+<td>$$\omega$$</td>
+<td></td>
+<td>$$$$</td>
+</tr>
+<tr>
+<td>\varepsilon</td>
+<td>$$\varepsilon$$</td>
+<td>\digamma</td>
+<td>$$\digamma$$</td>
+</tr>
+<tr>
+<td>\vartheta</td>
+<td>$$\vartheta$$</td>
+<td>\varkappa</td>
+<td>$$\varkappa$$</td>
+</tr>
+<tr>
+<td>\varpi</td>
+<td>$$\varpi$$</td>
+<td>\varrho</td>
+<td>$$\varrho$$</td>
+</tr>
+<tr>
+<td>\varsigma</td>
+<td>$$\varsigma$$</td>
+<td>\varphi</td>
+<td>$$\varphi$$</td>
+</tr>
+</tbody></table>
+<p><strong>声调</strong></p>
+<table>
+<thead>
+<tr>
+<th>LaTeX</th>
+<th>符号</th>
+<th>LaTeX</th>
+<th>符号</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>\acute{a}</td>
+<td>$$\acute{a}$$</td>
+<td>\grave{a}</td>
+<td>$$\grave{a}$$</td>
+</tr>
+<tr>
+<td>\hat{a}</td>
+<td>$$\hat{a}$$</td>
+<td>\tilde{a}</td>
+<td>$$\tilde{a}$$</td>
+</tr>
+<tr>
+<td>\breve{a}</td>
+<td>$$\breve{a}$$</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>\check{a}</td>
+<td>$$\check{a}$$</td>
+<td>\bar{a}</td>
+<td>$$\bar{a}$$</td>
+</tr>
+<tr>
+<td>\ddot{a}</td>
+<td>$$\ddot{a}$$</td>
+<td>\dot{a}</td>
+<td>$$\dot{a}$$</td>
+</tr>
+</tbody></table>
+<p><strong>特殊符号</strong></p>
+<table>
+<thead>
+<tr>
+<th>LaTeX</th>
+<th>符号</th>
+<th>LaTeX</th>
+<th>符号</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>\And</td>
+<td>$$\And$$</td>
+<td>\eth</td>
+<td>$$\eth$$</td>
+</tr>
+<tr>
+<td>\S</td>
+<td>$$\S$$</td>
+<td></td>
+<td>$$$$</td>
+</tr>
+<tr>
+<td>%</td>
+<td>$$%$$</td>
+<td>\dagger</td>
+<td>$$\dagger$$</td>
+</tr>
+<tr>
+<td>\ddagger</td>
+<td>$$\ddagger$$</td>
+<td>\ldots</td>
+<td>$$\ldots$$</td>
+</tr>
+<tr>
+<td>\cdots</td>
+<td>$$\cdots$$</td>
+<td>\colon</td>
+<td>$$\colon$$</td>
+</tr>
+<tr>
+<td>\smile</td>
+<td>$$\smile$$</td>
+<td>\frown</td>
+<td>$$\frown$$</td>
+</tr>
+<tr>
+<td>\wr</td>
+<td>$$\wr$$</td>
+<td>\triangleleft</td>
+<td>$$\triangleleft$$</td>
+</tr>
+<tr>
+<td>\triangleright</td>
+<td>$$\triangleright$$</td>
+<td>\infty</td>
+<td>$$\infty$$</td>
+</tr>
+<tr>
+<td>\bot</td>
+<td>$$\bot$$</td>
+<td>\top</td>
+<td>$$\top$$</td>
+</tr>
+<tr>
+<td>\vdash</td>
+<td>$$\vdash$$</td>
+<td>\vDash</td>
+<td>$$\vDash$$</td>
+</tr>
+<tr>
+<td>\Vdash</td>
+<td>$$\Vdash$$</td>
+<td>\models</td>
+<td>$$\models$$</td>
+</tr>
+<tr>
+<td>\lVert</td>
+<td>$$\lVert$$</td>
+<td>\rVert</td>
+<td>$$\rVert$$</td>
+</tr>
+<tr>
+<td>\imath</td>
+<td>$$\imath$$</td>
+<td>\hbar</td>
+<td>$$\hbar$$</td>
+</tr>
+<tr>
+<td>\ell</td>
+<td>$$\ell$$</td>
+<td>\mho</td>
+<td>$$\mho$$</td>
+</tr>
+<tr>
+<td>\Finv</td>
+<td>$$\Finv$$</td>
+<td>\Re</td>
+<td>$$\Re$$</td>
+</tr>
+<tr>
+<td>\Im</td>
+<td>$$\Im$$</td>
+<td>\wp</td>
+<td>$$\wp$$</td>
+</tr>
+<tr>
+<td>\complement</td>
+<td>$$\complement$$</td>
+<td></td>
+<td>$$$$</td>
+</tr>
+<tr>
+<td>\diamondsuit</td>
+<td>$$\diamondsuit$$</td>
+<td>\heartsuit</td>
+<td>$$\heartsuit$$</td>
+</tr>
+<tr>
+<td>\clubsuit</td>
+<td>$$\clubsuit$$</td>
+<td>\spadesuit</td>
+<td>$$\spadesuit$$</td>
+</tr>
+<tr>
+<td>\Game</td>
+<td>$$\Game$$</td>
+<td>\flat</td>
+<td>$$\flat$$</td>
+</tr>
+<tr>
+<td>\natural</td>
+<td>$$\natural$$</td>
+<td>\sharp</td>
+<td>$$\sharp$$</td>
+</tr>
+</tbody></table>
 
     </article>
     <!-- license  -->
@@ -496,13 +1540,13 @@ height:50vh;
     <ul class="post-paginator">
         <li class="next">
             
-                <div class="nextSlogan">Next Post</div>
-                <a href= "/2020/03/22/VsCode_Theme/" title= "实现自己的vscode主题插件">
-                    <div class="nextTitle">实现自己的vscode主题插件</div>
-                </a>
-            
         </li>
         <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href= "/2020/10/22/Google%20Xss%20games/" title= "Xss-game Writeup">
+                    <div class="prevTitle">Xss-game Writeup</div>
+                </a>
             
         </li>
     </ul>
@@ -632,7 +1676,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#一、Description"><span class="toc-number">1.</span> <span class="toc-text">一、Description</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#二、影响范围"><span class="toc-number">2.</span> <span class="toc-text">二、影响范围</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#三、复现"><span class="toc-number">3.</span> <span class="toc-text">三、复现</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#四、声明"><span class="toc-number">4.</span> <span class="toc-text">四、声明</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#LaTeX语法"><span class="toc-number">1.</span> <span class="toc-text">LaTeX语法</span></a></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
